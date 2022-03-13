@@ -138,16 +138,13 @@ async function fetchData() {
             i++;
         }
     }
-    // for (let i = 0 ;i < products.length; i++) {
-    //     console.log(products[i].modelI + "    " + products[i].priceI + "   " + products[i].stockI + "   " + products[i].memerySizeI);
-    // }
     return products;
 }
 
 
 async function printData() {
-    await console.clear();
     const products = await fetchData();
+    await console.clear();
     const all_products_name = await ["3090", "3080 Ti", "3080", "3070 Ti", "3070", "3060 Ti", "3060", "3050"];
     for (let i = 0; i < await all_products_name.length; i++) {
         let high = await 0;
@@ -168,9 +165,12 @@ async function printData() {
         //print
         await console.log("\x1b[93m" + (await all_products_name[i] + ":").padEnd(9) + "\x1b[91m" + await high + " \x1b[34m<--> \x1b[92m" + await low);
         if (lowerInStock != Number.MAX_VALUE) {
-            console.log("\x1b[33mLowest in stock: \x1b[32m" + lowerInStock + "  \x1b[0mName: " + lowerInStockName);
+            console.log("\x1b[33mLowest in stock: \x1b[32m" + lowerInStock + "  \x1b[0m" + lowerInStockName.slice(0,80));
         }
     }
+    var today = new Date();
+    var time = today.getHours() + ":" + today.getMinutes();
+    console.log("\x1b[32mUpdated time " + time);
 }
 
 
