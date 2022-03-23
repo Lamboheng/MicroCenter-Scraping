@@ -1,7 +1,8 @@
 from bs4 import BeautifulSoup
 import requests
-import re
+import sys
 import GPU_detail
+
 url = "https://www.microcenter.com/search/search_results.aspx?Ntk=all&sortby=match&N=4294808776&myStore=false&storeid=101&rpp=96"
 headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36'}
 
@@ -48,8 +49,32 @@ def setup_products():
 
 def main():
     products = setup_products()
+    products_lowest_price = {
+        "3090": sys.float_info.max, 
+        "3080 Ti": sys.float_info.max, 
+        "3080": sys.float_info.max, 
+        "3070 Ti": sys.float_info.max, 
+        "3070": sys.float_info.max, 
+        "3060 Ti": sys.float_info.max, 
+        "3060": sys.float_info.max, 
+        "3050": sys.float_info.max
+    }
+    products_highest_price = {
+        "3090": 0.0, 
+        "3080 Ti": 0.0, 
+        "3080": 0.0, 
+        "3070 Ti": 0.0, 
+        "3070": 0.0, 
+        "3060 Ti": 0.0, 
+        "3060": 0.0, 
+        "3050": 0.0
+    }
+    
     for product in products:
-        print(product.string())
+        if (products_lowest_price[product.model] > product.price):
+            products_lowest_price[product.model] = product.price
+        if (products_highest_price[product.model] < product.price):
+            products_highest_price[product.model] = product.price
 
 if __name__ == "__main__":
     main()
