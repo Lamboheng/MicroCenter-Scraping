@@ -1,3 +1,4 @@
+const { debug, Console } = require('console');
 const puppeteer = require('puppeteer');
 
 class Product {
@@ -84,17 +85,24 @@ async function scrapeProduct(url) {
     prices = await new Array();
     stocks = await new Array();
     const [el] = await page.$x('//*[@id="productGrid"]/ul');
-    var temp = await page.$$eval('.product_wrapper .detail_wrapper a', elements=> elements.map(item=>item.textContent));
+
+    var temp = await page.$$eval('.product_wrapper .result_right .details .detail_wrapper a', elements=> elements.map(item=>item.textContent));
     for (let i = 0; i < temp.length; i++) {
         await titles.push(temp[i]);
     }
-    prices = await page.$$eval('.product_wrapper .price_wrapper .price span', elements=> elements.map(item=>item.textContent));
-    for (let i = 0; i < temp.length; i++) {
-        await prices.push(temp[i]);
+
+    var temp2 = await page.$$eval('.product_wrapper .result_right .details .price_wrapper .price :not(span.strike) :not(span.savings) :not(span.upper)', elements=> elements.map(item=>item.textContent));
+    for (let i = 0; i < temp2.length; i++) {
+        if (await temp2[i].length <= 1 || await temp2[i].length >= 10) {
+            continue;
+        }
+        console.log("temp2[i] = " + temp2[i]);
+        await prices.push(temp2[i]);
     }
-    stocks = await page.$$eval('.product_wrapper .detail_wrapper .stock', elements=> elements.map(item=>item.textContent));
-    for (let i = 0; i < temp.length; i++) {
-        await stocks.push(temp[i]);
+
+    var temp3 = await page.$$eval('.product_wrapper .result_right .details .detail_wrapper .stock', elements=> elements.map(item=>item.textContent));
+    for (let i = 0; i < temp3.length; i++) {
+        await stocks.push(temp3[i]);
     }
 
     browser.close();
@@ -114,16 +122,13 @@ async function fetchData() {
         product.fromTitleToMemery();
         products.push(product);
     }
-
-    for (let i = 0; i < await prices.length;) {
-        if (await prices[i].length == 1 || await prices[i].length > 10) {
-            await prices.splice(i,1);
-        } else {
-            prices[i] = await prices[i].replace('$', '');
-            prices[i] = await prices[i].replace(',', '');
-            products[i].priceI = await Number(prices[i]);
-            i++;
-        }
+    console.log("prices.length = " + prices.length);
+    console.log("products.length = " + products.length);
+    for (let i = 0; i < await prices.length && i < products.length; i++) {
+        prices[i] = await prices[i].replace('$', '');
+        prices[i] = await prices[i].replace(',', '');
+        console.log("prices[i] = " + prices[i]);
+        products[i].priceI = await Number(prices[i]);
     }
     for (let i = 0; i < stocks.length;) {
         if (!stocks[i].includes("IN STOCK") && !stocks[i].includes("SOLD OUT")){
@@ -144,7 +149,7 @@ async function fetchData() {
 
 async function printData() {
     const products = await fetchData();
-    await console.clear();
+    // await console.clear();
     const all_products_name = await ["3090", "3080 Ti", "3080", "3070 Ti", "3070", "3060 Ti", "3060", "3050"];
     for (let i = 0; i < await all_products_name.length; i++) {
         let high = await 0;
@@ -175,7 +180,7 @@ async function printData() {
 
 
 async function main() {
-    await setInterval(await printData, 60000);
+    await setInterval(await printData, 5000);
 }
 
 main();
