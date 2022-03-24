@@ -3,9 +3,9 @@
 <!-- USAGE EXAMPLES -->
 ## Usage
 ```
-npm install node
-npm install puppeteer
-node main.js
+pip install BeautifulSoup4
+pip install requests
+python3 main.py
 ```
 
 <!-- ROADMAP -->
