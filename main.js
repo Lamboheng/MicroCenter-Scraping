@@ -10,8 +10,6 @@ class Product {
         this.memerySize = "unknow";
     }
 
-    
-
     fromTitleToModel() {
         if (this.title.includes("3090")) this.model = "3090";
         if (this.title.includes('3080')) {

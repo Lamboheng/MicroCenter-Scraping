@@ -75,6 +75,11 @@ def main():
             products_lowest_price[product.model] = product.price
         if (products_highest_price[product.model] < product.price):
             products_highest_price[product.model] = product.price
+            
+    for i in range(len(GPU_detail.GPU_MODELS)):
+        if GPU_detail.GPU_MODELS[i] not in products_lowest_price.keys():
+            continue
+        print("\x1b[93m" + (GPU_detail.GPU_MODELS[i] + ":").ljust(10) + "\x1b[91m" + (str(products_highest_price[GPU_detail.GPU_MODELS[i]])).rjust(8) + " \x1b[34m<--> \x1b[92m" + str(products_lowest_price[GPU_detail.GPU_MODELS[i]]))
 
 if __name__ == "__main__":
     main()

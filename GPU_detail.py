@@ -1,7 +1,7 @@
-class GPU:
-    all_models = ["3090", "3080 Ti", "3080", "3070 Ti", "3070", "3060 Ti", "3060", "3050 Ti", "3050"]
-    all_sizes = ["26GB", "24GB", "22GB", "20GB", "18GB", "16GB", "14GB", "12GB", "10GB", "8GB", "6GB", "4GB", "2GB"]
+GPU_MODELS = ["3090", "3080 Ti", "3080", "3070 Ti", "3070", "3060 Ti", "3060", "3050 Ti", "3050"]
+GPU_SIZES = ["26GB", "24GB", "22GB", "20GB", "18GB", "16GB", "14GB", "12GB", "10GB", "8GB", "6GB", "4GB", "2GB"]
 
+class GPU:
     def __init__(this, title = "unknow", model="unknow", price = 0, stock = 0, memerySize = "unknow"):
         this.title = title
         this.model = model
@@ -26,13 +26,13 @@ class GPU:
     def get_memerySize(this): return this.memerySize
 
     def find_model(this):
-        for model in this.all_models:
+        for model in GPU_MODELS:
             if (this.title.find(model) != -1):
                 return model
         return "unknow"
 
     def find_memerySize(this):
-        for size in this.all_sizes:
+        for size in GPU_SIZES:
             if (this.title.find(size) != -1):
                 return size
         return "unknow"
