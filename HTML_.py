@@ -32,3 +32,24 @@ def get_html_stocks(doc: BeautifulSoup):
         else:
             stocks.append(int(0))
     return stocks
+
+def get_html_SKU(doc: BeautifulSoup):
+    SKUs = []
+    tags = doc.find_all(class_ = "sku")
+    for tag in tags:
+        text = tag.text.replace("SKU: ", "")
+        if len(text) > 0:
+            SKUs.append(text)
+        else:
+            SKUs.append("unknow")
+    return SKUs
+
+def get_html_link(doc: BeautifulSoup):
+    links = []
+    tags = doc.find_all(class_ = "detail_wrapper")
+    for tag in tags:
+        if len(tag) > 0:
+            links.append("https://www.microcenter.com" + tag.find("a").get("href"))
+        else:
+            links.append("unknow")
+    return links

@@ -3,32 +3,37 @@ GPU_SIZES = ["26GB", "24GB", "22GB", "20GB", "18GB", "16GB", "14GB", "12GB", "10
 GPU_BRANDS = ["ASUS", "Gigabyte", "MSI", "EVGA", "Zotac", "PowerColor", "PNY", "Sapphire Technology", "Visiontek", "ASRock", "AMD"]
 
 class GPU:
-    def __init__(this, title = "unknow", model="unknow", brand = "unknow", price = 0, stock = 0, memerySize = "unknow"):
+    def __init__(this, title = "unknow", model="unknow", brand = "unknow", price = 0, stock = 0, memorySize = "unknow", SKU = "unknow", link = "unknow"):
         this.title = title
         this.model = model
         this.brand = brand
         this.price = price
         this.stock = stock
-        this.memerySize = memerySize
+        this.memorySize = memorySize
+        this.SKU = SKU
+        this.link = link
         if (this.title != "unknow"):
             this.model = this.find_model()
             this.brand = this.find_brand()
-            this.memerySize = this.find_memerySize()
-
+            this.memorySize = this.find_memorySize()
 
     def set_title(this, title): this.title = title
     def set_model(this, model): this.model = model
     def set_brand(this, brand): this.brand = brand
     def set_price(this, price): this.price = price
     def set_stock(this, stock): this.stock = stock
-    def set_memerySize(this, memerySize): this.memerySize = memerySize
+    def set_memorySize(this, memorySize): this.memorySize = memorySize
+    def set_SKU(this, SKU): this.SKU = SKU
+    def set_link(this, link): this.link = link
 
     def get_title(this): return this.title
     def get_model(this): return this.model
     def get_brand(this): return this.brand
     def get_price(this): return this.price
     def get_stock(this): return this.stock
-    def get_memerySize(this): return this.memerySize
+    def get_memorySize(this): return this.memorySize
+    def get_SKU(this): return this.SKU
+    def get_link(this): return this.link
 
     def find_model(this):
         for model in GPU_MODELS:
@@ -36,7 +41,7 @@ class GPU:
                 return model
         return "unknow"
 
-    def find_memerySize(this):
+    def find_memorySize(this):
         for size in GPU_SIZES:
             if (this.title.find(size) != -1):
                 return size
@@ -49,4 +54,4 @@ class GPU:
         return "unknow"
     
     def string(this):
-        return this.model + " " + this.memerySize + " " + str(this.price) + " " + str(this.stock)
+        return this.model + " " + this.memorySize + " " + str(this.price) + " " + str(this.stock)
