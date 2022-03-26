@@ -13,7 +13,8 @@ python3 main.py
 
 - [x] Show all RTX cards price range every minute
 - [x] Show current lowest in stock card
-- [ ] record price history store to json
-- [ ] web interface
+- [x] record price history store to json
+- [x] send email with price drop
+- [ ] interface
     - [ ] history graph
     - [ ] every graphic card history
