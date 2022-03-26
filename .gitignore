@@ -2,3 +2,5 @@
 package-lock.json
 /node_modules
 /__pycache__
+*.html
+/GeForce RTX 3000 Series _ Micro Center_files
