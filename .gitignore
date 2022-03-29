@@ -2,3 +2,11 @@
 package-lock.json
 /node_modules
 /__pycache__
+/token files
+/GeForce RTX 3000 Series _ Micro Center_files
+
+*.html
+
+credentials.txt
+email.txt
+client.json
