@@ -1,6 +1,6 @@
 import Util
 from Email_ import send_email
-import time
+from GUI_ import print_screen
 
 def main():
     products = []
@@ -8,9 +8,9 @@ def main():
     # time.sleep(3)
     # Util.update_products(products)
     # Util.update_json(products)
-    Util.print_products(products)
-    if send_email(products[0]):
-        print("email sent")
+    # print(Util.products_str(products))
+    print_screen(products)
+    
     
     
 if __name__ == "__main__":

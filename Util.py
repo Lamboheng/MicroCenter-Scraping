@@ -1,4 +1,3 @@
-from pickle import TRUE
 import sys
 import os.path
 import json
@@ -130,7 +129,7 @@ def json_update_stock(product: GPU_.GPU):
     with open(DEFAULT_RECORD_NAME, "w") as f:
         json.dump(datas, f, indent=2)
 
-def print_products(products: GPU_.GPU):
+def products_str(products: GPU_.GPU):
     products_lowest_price = {
         "3090": sys.float_info.max, 
         "3080 Ti": sys.float_info.max, 
@@ -157,8 +156,9 @@ def print_products(products: GPU_.GPU):
             products_lowest_price[product.model] = product.price
         if (products_highest_price[product.model] < product.price):
             products_highest_price[product.model] = product.price
-            
+    string = ""
     for i in range(len(GPU_.GPU_MODELS)):
         if GPU_.GPU_MODELS[i] not in products_lowest_price.keys():
             continue
-        print("\x1b[93m" + (GPU_.GPU_MODELS[i] + ":").ljust(8) + "\x1b[91m" + (str(products_highest_price[GPU_.GPU_MODELS[i]])).rjust(8) + " \x1b[34m<--> \x1b[92m" + str(products_lowest_price[GPU_.GPU_MODELS[i]]))
+        string += "\x1b[91m" + (str(products_highest_price[GPU_.GPU_MODELS[i]])).rjust(8) + " \x1b[34m<- " "\x1b[93m" + (GPU_.GPU_MODELS[i]).ljust(8) + "\x1b[34m-> \x1b[92m" + str(products_lowest_price[GPU_.GPU_MODELS[i]]) + "\n"
+    return string

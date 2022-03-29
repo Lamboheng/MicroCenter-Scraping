@@ -1,4 +1,4 @@
-GPU_MODELS = ["3090", "3080 Ti", "3080", "3070 Ti", "3070", "3060 Ti", "3060", "3050 Ti", "3050"]
+GPU_MODELS = ["3090", "3080 Ti", "3080", "3070 Ti", "3070", "3060 Ti", "3060", "3050"]
 GPU_SIZES = ["26GB", "24GB", "22GB", "20GB", "18GB", "16GB", "14GB", "12GB", "10GB", "8GB", "6GB", "4GB", "2GB"]
 GPU_BRANDS = ["ASUS", "Gigabyte", "MSI", "EVGA", "Zotac", "PowerColor", "PNY", "Sapphire Technology", "Visiontek", "ASRock", "AMD"]
 
