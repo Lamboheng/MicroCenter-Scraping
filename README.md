@@ -1,12 +1,17 @@
 # MicroCenter-Scraping
+## About The Project
+Console interface, Micro Center, RTX cards, tracker
+Email you when price has drop to target price
 
 <!-- USAGE EXAMPLES -->
 ## Usage
 ```
-pip install BeautifulSoup4
-pip install requests
+python3 -m pip install -r requirements.txt
 python3 main.py
 ```
+- create a 'email.txt' with your email
+- create a 'client.json' with your google cloud gmail API credentials
+    - watch this tutorial to setup your gmail API -> https://youtu.be/7X3fBlMw_1k
 
 <!-- ROADMAP -->
 ## Roadmap
