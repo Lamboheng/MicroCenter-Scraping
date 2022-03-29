@@ -28,7 +28,7 @@ def screen(stdscr, products: GPU_.GPU, GPU_GOAL_MODEL = ["3080","3070 Ti","3070"
     
     stdscr.nodelay(True)
     count_time = DEFAULT_TIME_OUT
-    last_sent = datetime.now().strftime("%m/%d %H:%M")
+    last_sent = "00/00 00:00"
     while True:
         rows, cols = stdscr.getmaxyx()
         if rows > 22 and cols > 80:
@@ -173,5 +173,5 @@ def print_windows2(windows2, products, BLUE, YELLOW, WHITE, GREEN):
                 windows2.addstr(line, totalLen, title, WHITE)
             line += 1
     
-def print_screen(products: GPU_.GPU):
-    wrapper(screen, products)
+def print_screen(products: GPU_.GPU, GPU_GOAL_MODEL = ["3080","3070 Ti","3070"], GPU_GOAL_PRICE = [800.00,700.00,600.00]):
+    wrapper(screen, products, GPU_GOAL_MODEL, GPU_GOAL_PRICE)

@@ -26,7 +26,7 @@ def get_html_stocks(doc: BeautifulSoup):
     stocks = []
     tags = doc.find_all(class_ = "stock")
     for tag in tags:
-        text = tag.text.replace("IN STOCK", "").replace("SOLD OUT", "").replace("at Tustin Store", "").replace("+", "").strip()
+        text = tag.text.replace("IN STOCK", "").replace("SOLD OUT", "").replace("at Tustin Store", "").replace("+", "").replace("Buy In Store", "").replace("-", "").strip()
         if len(text) > 0:
             stocks.append(int(text))
         else:
