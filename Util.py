@@ -5,6 +5,7 @@ from datetime import datetime
 
 import HTML_
 import GPU_
+import Email_
 
 DEFAULT_RECORD_NAME = "records.json"
 
@@ -162,3 +163,21 @@ def products_str(products: GPU_.GPU):
             continue
         string += "\x1b[91m" + (str(products_highest_price[GPU_.GPU_MODELS[i]])).rjust(8) + " \x1b[34m<- " "\x1b[93m" + (GPU_.GPU_MODELS[i]).ljust(8) + "\x1b[34m-> \x1b[92m" + str(products_lowest_price[GPU_.GPU_MODELS[i]]) + "\n"
     return string
+
+def send_email_at_goal(products: GPU_.GPU, models = ["3080","3070 Ti","3070"], price_goal = [800.00,600.00,500.00]):
+    lowest = sys.float_info.max
+    found = False
+    lowest_product = products[0]
+    sent = False;
+    for i in range(len(models)):
+        for product in products:
+            if product.get_model() == models[i] and product.get_stock() > 0 and product.get_price() < lowest:
+                found == True
+                lowest = product.get_price()
+                lowest_product = product
+        if found and lowest < price_goal[i]:
+            sent = True
+            Email_.send_email(lowest_product)
+        lowest = sys.float_info.max
+        found = False
+    return sent
