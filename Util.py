@@ -29,6 +29,7 @@ def update_products(products: GPU_.GPU):
     stocks = HTML_.get_html_stocks(html)
     SKUs = HTML_.get_html_SKU(html)
     links = HTML_.get_html_link(html)
+    changed = False
     if (len(titles) == len(prices) and len(prices) == len(stocks) and len(stocks) == len(SKUs) and len(SKUs) == len(links)):
         for product in products:
             found = False
@@ -36,16 +37,24 @@ def update_products(products: GPU_.GPU):
                 if product.get_SKU() == SKUs[i]:
                     found = True
                     if product.get_title() != titles[i]:
+                        changed = True
                         product.set_title(titles[i])
                         product.find_model()
                         product.find_memorySize()
                         product.find_brand()
-                    product.set_link(links[i])
-                    product.set_price(float(prices[i]))
-                    product.set_stock(int(stocks[i]))
+                    if product.get_link() != links[i]:
+                        changed = True
+                        product.set_link(links[i])
+                    if product.get_price() != float(prices[i]):
+                        changed = True
+                        product.set_price(float(prices[i]))
+                    if product.get_stock() != int(stocks[i]):
+                        changed = True
+                        product.set_stock(int(stocks[i]))
                     break
             if found == False:
                 products.append(GPU_.GPU(title=titles[i], price=prices[i], stock=stocks[i], SKU=SKUs[i], link=links[i]))
+    return changed
             
 def update_json(products: GPU_.GPU):
     if os.path.exists(DEFAULT_RECORD_NAME):
@@ -181,3 +190,17 @@ def send_email_at_goal(products: GPU_.GPU, models = ["3080","3070 Ti","3070"], p
         lowest = sys.float_info.max
         found = False
     return sent
+
+def find_lowest_highest(products: GPU_.GPU):
+    lowest_price = {}
+    highest_price = {}
+    for model in GPU_.GPU_MODELS:
+        lowest_price[model] = sys.float_info.max
+        highest_price[model] = 0.0
+    for product in products:
+        if (lowest_price[product.model] > product.price):
+            lowest_price[product.model] = product.price
+        if (highest_price[product.model] < product.price):
+            highest_price[product.model] = product.price
+            
+    return lowest_price, highest_price

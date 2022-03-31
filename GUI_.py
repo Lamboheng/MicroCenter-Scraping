@@ -1,14 +1,16 @@
 import curses
 import sys
 from curses import wrapper
+from tkinter import *
 from datetime import datetime
 import time
+
 import GPU_
 import Util
 
 DEFAULT_TIME_OUT = 60
 
-def screen(stdscr, products: GPU_.GPU, GPU_GOAL_MODEL = ["3080","3070 Ti","3070"], GPU_GOAL_PRICE = [800.00,700.00,600.00]):
+def curses_screen(stdscr, products: GPU_.GPU, GPU_GOAL_MODEL = ["3080","3070 Ti","3070"], GPU_GOAL_PRICE = [800.00,700.00,600.00]):
     curses.init_pair(1, curses.COLOR_BLUE, curses.COLOR_BLACK)
     curses.init_pair(2, curses.COLOR_CYAN, curses.COLOR_BLACK)
     curses.init_pair(3, curses.COLOR_GREEN, curses.COLOR_BLACK)
@@ -44,8 +46,8 @@ def screen(stdscr, products: GPU_.GPU, GPU_GOAL_MODEL = ["3080","3070 Ti","3070"
                 stdscr.attron(WHITE)
                 stdscr.border()
                 stdscr.attroff(WHITE)
-                print_windows1(windows1, products, BLUE, BLACK, RED, YELLOW, GREEN)
-                print_windows2(windows2, products, BLUE, YELLOW, WHITE, GREEN)
+                curses_windows1(windows1, products, BLUE, BLACK, RED, YELLOW, GREEN)
+                curses_windows2(windows2, products, BLUE, YELLOW, WHITE, GREEN)
                 # stdscr.move(rows-1,cols-1)
                 stdscr.refresh()
                 windows1.refresh()
@@ -74,36 +76,13 @@ def screen(stdscr, products: GPU_.GPU, GPU_GOAL_MODEL = ["3080","3070 Ti","3070"
             count_time = DEFAULT_TIME_OUT
             continue
 
-def print_windows1(windows1, products, BLUE, BLACK, RED, YELLOW, GREEN):
+def curses_windows1(windows1, products, BLUE, BLACK, RED, YELLOW, GREEN):
     windows1.attron(BLUE)
     windows1.border()
     windows1.attroff(BLUE)
 
-    products_lowest_price = {
-        "3090": sys.float_info.max, 
-        "3080 Ti": sys.float_info.max, 
-        "3080": sys.float_info.max, 
-        "3070 Ti": sys.float_info.max, 
-        "3070": sys.float_info.max, 
-        "3060 Ti": sys.float_info.max, 
-        "3060": sys.float_info.max, 
-        "3050": sys.float_info.max
-    }
-    products_highest_price = {
-        "3090": 0.0, 
-        "3080 Ti": 0.0, 
-        "3080": 0.0, 
-        "3070 Ti": 0.0, 
-        "3070": 0.0, 
-        "3060 Ti": 0.0, 
-        "3060": 0.0, 
-        "3050": 0.0
-    }
-    for product in products:
-        if (products_lowest_price[product.model] > product.price):
-            products_lowest_price[product.model] = product.price
-        if (products_highest_price[product.model] < product.price):
-            products_highest_price[product.model] = product.price
+    products_lowest_price, products_highest_price = Util.find_lowest_highest(products)
+    
     for i in range(len(GPU_.GPU_MODELS)):
         if GPU_.GPU_MODELS[i] not in products_lowest_price.keys():
             continue
@@ -128,7 +107,7 @@ def print_windows1(windows1, products, BLUE, BLACK, RED, YELLOW, GREEN):
         totalLen += len(str(" -> "))
         windows1.addstr(i+1, totalLen, str(products_lowest_price[GPU_.GPU_MODELS[i]]), GREEN)
 
-def print_windows2(windows2, products, BLUE, YELLOW, WHITE, GREEN):
+def curses_windows2(windows2, products, BLUE, YELLOW, WHITE, GREEN):
     windows2.attron(BLUE)
     windows2.border()
     windows2.attroff(BLUE)
@@ -173,5 +152,108 @@ def print_windows2(windows2, products, BLUE, YELLOW, WHITE, GREEN):
                 windows2.addstr(line, totalLen, title, WHITE)
             line += 1
     
-def print_screen(products: GPU_.GPU, GPU_GOAL_MODEL = ["3080","3070 Ti","3070"], GPU_GOAL_PRICE = [800.00,700.00,600.00]):
-    wrapper(screen, products, GPU_GOAL_MODEL, GPU_GOAL_PRICE)
+def screen_curses(products: GPU_.GPU, GPU_GOAL_MODEL = ["3080","3070 Ti","3070"], GPU_GOAL_PRICE = [800.00,700.00,600.00]):
+    wrapper(curses_screen, products, GPU_GOAL_MODEL, GPU_GOAL_PRICE)
+
+## ------ tkinter ------
+
+## only for setup tkinter and frames
+def screen_tk(products: GPU_.GPU, GPU_GOAL_MODEL = ["3080","3070 Ti","3070"], GPU_GOAL_PRICE = [800.00,700.00,600.00]):
+    root = Tk()
+    # root.geometry('500x200')
+    root.title('GPU Price')
+    main_frame = Frame(root)
+    
+    last_sent = '00/00 00:00'
+    label1 = Label(main_frame)
+    label1.pack()
+    current_price_frame = LabelFrame(main_frame, text='Current price')
+    current_stock_frame = LabelFrame(main_frame, text='Lowest stock')
+    current_price_frame.pack(padx = 10, pady= 5)
+    current_stock_frame.pack(padx = 10, pady= 5)
+    
+    ## every frame update at this function
+    def update_main_frame():
+        if Util.update_products(products):
+            Util.update_json(products)
+            temp = Util.send_email_at_goal()
+            if temp: last_sent = datetime.now().strftime("%m/%d %H:%M")
+        label1.config(text=datetime.now().strftime('%H:%M:%S %p'))
+        
+        clear_frame(current_price_frame)
+        clear_frame(current_stock_frame)
+        frame_price(current_price_frame, products)
+        frame_stock(current_stock_frame, products)
+        
+        main_frame.after(1000, update_main_frame)
+            
+    update_main_frame()
+    main_frame.pack(padx=10,pady=10)
+    root.mainloop()
+
+
+## pull data from products and put it to frame
+def frame_price(frame, products: GPU_.GPU):
+    rows, columns = 0, 0
+    lowest_price, highest_price = Util.find_lowest_highest(products)
+    for model in GPU_.GPU_MODELS:
+        if highest_price[model] == 0.0:
+            continue
+        label = Label(frame, text=f'{highest_price[model]}', fg='red')
+        label.grid(row=rows, column=columns)
+        columns +=1
+        label = Label(frame, text=f' <- ', fg='blue')
+        label.grid(row=rows, column=columns)
+        columns +=1
+        label = Label(frame, text=f'{model}', fg='black')
+        label.grid(row=rows, column=columns)
+        columns +=1
+        label = Label(frame, text=f' -> ', fg='blue')
+        label.grid(row=rows, column=columns)
+        columns +=1
+        label = Label(frame, text=f'{lowest_price[model]}', fg='green')
+        label.grid(row=rows, column=columns)
+        columns +=1
+        rows += 1
+        columns = 0
+    return
+
+## pull data from products and put it to frame
+def frame_stock(frame, products: GPU_.GPU):
+    rows, columns = 1, 0
+    Label(frame,  text='Model', fg='magenta').grid(row=0, column=0)
+    Label(frame,  text='Price', fg='magenta').grid(row=0, column=1)
+    Label(frame,  text='Stock', fg='magenta').grid(row=0, column=2)
+    Label(frame,  text='Title', fg='magenta').grid(row=0, column=3)
+    for model in GPU_.GPU_MODELS:
+        found = False
+        lowest = sys.float_info.max
+        title = ""
+        stock = 0
+        for product in products:
+            if product.get_model() == model and product.get_stock() > 0:
+                found = True
+                if product.get_price() < lowest:
+                    lowest = product.get_price()
+                    title = product.get_title()
+                    stock = product.get_stock()
+        if found:
+            temp_str = model
+            if len(temp_str) < 7:
+                temp_str = "   " + temp_str
+            Label(frame, text=f'{temp_str}: ', fg='blue').grid(row=rows, column=columns)
+            columns += 1
+            Label(frame, text=f'{lowest} ', fg='green').grid(row=rows, column=columns)
+            columns += 1
+            Label(frame, text=f'({stock}) ', fg='green').grid(row=rows, column=columns)
+            columns += 1
+            Label(frame, text=f'{title[0:50]}', fg='black').grid(row=rows, column=columns)
+            columns += 1
+            rows, columns = rows+1, 0
+    return
+
+def clear_frame(frame):
+    for widget in frame.winfo_children():
+        widget.destroy()
+    
+        
