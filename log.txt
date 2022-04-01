@@ -1,0 +1,131 @@
+03/31 23:30 Gigabyte 3080 Ti stock from 17 to 18
+03/31 23:30 Gigabyte 3080 Ti stock from 18 to 17
+04/01 03:11 ASUS 3090 price from 2229.99 to 1999.99
+04/01 03:11 MSI 3070 Ti stock from 0 to 25
+04/01 03:11 Gigabyte 3080 Ti price from 1449.99 to 1549.99
+04/01 03:11 Gigabyte 3080 Ti stock from 0 to 13
+04/01 03:11 ASUS 3060 Ti price from 649.99 to 599.99
+04/01 03:11 ASUS 3060 Ti stock from 0 to 9
+04/01 03:11 Gigabyte 3080 Ti stock from 17 to 16
+04/01 03:11 ASUS 3080 Ti price from 1699.99 to 1549.99
+04/01 03:11 ASUS 3060 price from 509.99 to 459.99
+04/01 03:11 ASUS 3060 stock from 0 to 7
+04/01 03:11 MSI 3050 stock from 16 to 17
+04/01 03:11 ASUS 3080 Ti price from 1799.99 to 1649.99
+04/01 03:11 ASUS 3080 Ti stock from 0 to 8
+04/01 03:11 ASUS 3060 price from 529.99 to 489.99
+04/01 03:11 ASUS 3060 stock from 0 to 4
+04/01 03:11 ASUS 3060 price from 469.99 to 409.99
+04/01 03:11 ASUS 3060 Ti price from 609.99 to 549.99
+04/01 03:11 ASUS 3060 Ti price from 589.99 to 529.99
+04/01 03:11 ASUS 3080 price from 1599.99 to 1399.99
+04/01 03:11 ASUS 3080 stock from 1 to 24
+04/01 03:11 ASUS 3080 price from 1099.99 to 999.99
+04/01 03:11 Gigabyte 3070 Ti stock from 0 to 7
+04/01 03:11 ASUS 3070 price from 779.99 to 699.99
+04/01 03:11 ASUS 3070 stock from 0 to 5
+04/01 03:11 ASUS 3050 price from 489.99 to 429.99
+04/01 03:11 ASUS 3060 Ti price from 569.99 to 499.99
+04/01 03:11 Gigabyte 3060 Ti stock from 0 to 3
+04/01 03:11 ASUS 3080 stock from 0 to 15
+04/01 03:11 ASUS 3080 Ti price from 2099.99 to 1699.99
+04/01 03:11 ASUS 3080 Ti stock from 0 to 7
+04/01 03:11 ASUS 3070 price from 749.99 to 659.99
+04/01 03:11 Zotac 3050 price from 419.99 to 399.99
+04/01 03:11 ASUS 3070 Ti price from 999.99 to 899.99
+04/01 03:11 ASUS 3080 price from 1159.99 to 1089.99
+04/01 03:11 ASUS 3070 price from 729.99 to 629.99
+04/01 03:11 Zotac 3080 Ti price from 1849.99 to 1399.99
+04/01 03:11 Zotac 3060 price from 589.99 to 529.99
+04/01 03:11 Zotac 3080 Ti price from 1949.99 to 1449.99
+04/01 03:11 ASUS 3080 price from 1049.99 to 849.99
+04/01 03:11 Zotac 3060 Ti price from 699.99 to 649.99
+04/01 03:11 ASUS 3070 price from 829.99 to 749.99
+04/01 03:11 Zotac 3080 price from 1649.99 to 1299.99
+04/01 03:11 ASUS 3090 price from 2129.99 to 1899.99
+04/01 03:18 ASUS 3090 price from 1999.99 to 2229.99
+04/01 03:18 MSI 3070 Ti stock from 25 to 0
+04/01 03:18 Gigabyte 3080 Ti price from 1549.99 to 1449.99
+04/01 03:18 Gigabyte 3080 Ti stock from 13 to 0
+04/01 03:18 ASUS 3060 Ti price from 599.99 to 649.99
+04/01 03:18 ASUS 3060 Ti stock from 9 to 0
+04/01 03:18 Gigabyte 3080 Ti stock from 16 to 17
+04/01 03:18 ASUS 3080 Ti price from 1549.99 to 1699.99
+04/01 03:18 ASUS 3060 price from 459.99 to 509.99
+04/01 03:18 ASUS 3060 stock from 7 to 0
+04/01 03:18 MSI 3050 stock from 17 to 16
+04/01 03:18 ASUS 3080 Ti price from 1649.99 to 1799.99
+04/01 03:18 ASUS 3080 Ti stock from 8 to 0
+04/01 03:18 ASUS 3060 price from 489.99 to 529.99
+04/01 03:18 ASUS 3060 stock from 4 to 0
+04/01 03:18 ASUS 3060 price from 409.99 to 469.99
+04/01 03:18 ASUS 3060 Ti price from 549.99 to 609.99
+04/01 03:18 ASUS 3060 Ti price from 529.99 to 589.99
+04/01 03:18 ASUS 3080 price from 1399.99 to 1599.99
+04/01 03:18 ASUS 3080 stock from 24 to 1
+04/01 03:18 ASUS 3080 price from 999.99 to 1099.99
+04/01 03:18 Gigabyte 3070 Ti stock from 7 to 0
+04/01 03:18 ASUS 3070 price from 699.99 to 779.99
+04/01 03:18 ASUS 3070 stock from 5 to 0
+04/01 03:18 ASUS 3050 price from 429.99 to 489.99
+04/01 03:18 ASUS 3060 Ti price from 499.99 to 569.99
+04/01 03:18 Gigabyte 3060 Ti stock from 3 to 0
+04/01 03:18 ASUS 3080 stock from 15 to 0
+04/01 03:18 ASUS 3080 Ti price from 1699.99 to 2099.99
+04/01 03:18 ASUS 3080 Ti stock from 7 to 0
+04/01 03:18 ASUS 3070 price from 659.99 to 749.99
+04/01 03:18 Zotac 3050 price from 399.99 to 419.99
+04/01 03:18 ASUS 3070 Ti price from 899.99 to 999.99
+04/01 03:18 ASUS 3080 price from 1089.99 to 1159.99
+04/01 03:18 ASUS 3070 price from 629.99 to 729.99
+04/01 03:18 Zotac 3080 Ti price from 1399.99 to 1849.99
+04/01 03:18 Zotac 3060 price from 529.99 to 589.99
+04/01 03:18 Zotac 3080 Ti price from 1449.99 to 1949.99
+04/01 03:18 ASUS 3080 price from 849.99 to 1049.99
+04/01 03:18 Zotac 3060 Ti price from 649.99 to 699.99
+04/01 03:18 ASUS 3070 price from 749.99 to 829.99
+04/01 03:18 Zotac 3080 price from 1299.99 to 1649.99
+04/01 03:18 ASUS 3090 price from 1899.99 to 2129.99
+04/01 03:19 ASUS 3090 price from 2229.99 to 1999.99
+04/01 03:19 MSI 3070 Ti stock from 0 to 25
+04/01 03:19 Gigabyte 3080 Ti price from 1449.99 to 1549.99
+04/01 03:19 Gigabyte 3080 Ti stock from 0 to 13
+04/01 03:19 ASUS 3060 Ti price from 649.99 to 599.99
+04/01 03:19 ASUS 3060 Ti stock from 0 to 9
+04/01 03:19 Gigabyte 3080 Ti stock from 17 to 16
+04/01 03:19 ASUS 3080 Ti price from 1699.99 to 1549.99
+04/01 03:19 ASUS 3060 price from 509.99 to 459.99
+04/01 03:19 ASUS 3060 stock from 0 to 7
+04/01 03:19 MSI 3050 stock from 16 to 17
+04/01 03:19 ASUS 3080 Ti price from 1799.99 to 1649.99
+04/01 03:19 ASUS 3080 Ti stock from 0 to 8
+04/01 03:19 ASUS 3060 price from 529.99 to 489.99
+04/01 03:19 ASUS 3060 stock from 0 to 4
+04/01 03:19 ASUS 3060 price from 469.99 to 409.99
+04/01 03:19 ASUS 3060 Ti price from 609.99 to 549.99
+04/01 03:19 ASUS 3060 Ti price from 589.99 to 529.99
+04/01 03:19 ASUS 3080 price from 1599.99 to 1399.99
+04/01 03:19 ASUS 3080 stock from 1 to 24
+04/01 03:19 ASUS 3080 price from 1099.99 to 999.99
+04/01 03:19 Gigabyte 3070 Ti stock from 0 to 7
+04/01 03:19 ASUS 3070 price from 779.99 to 699.99
+04/01 03:19 ASUS 3070 stock from 0 to 5
+04/01 03:19 ASUS 3050 price from 489.99 to 429.99
+04/01 03:19 ASUS 3060 Ti price from 569.99 to 499.99
+04/01 03:19 Gigabyte 3060 Ti stock from 0 to 3
+04/01 03:19 ASUS 3080 stock from 0 to 15
+04/01 03:19 ASUS 3080 Ti price from 2099.99 to 1699.99
+04/01 03:19 ASUS 3080 Ti stock from 0 to 7
+04/01 03:19 ASUS 3070 price from 749.99 to 659.99
+04/01 03:19 Zotac 3050 price from 419.99 to 399.99
+04/01 03:19 ASUS 3070 Ti price from 999.99 to 899.99
+04/01 03:19 ASUS 3080 price from 1159.99 to 1089.99
+04/01 03:19 ASUS 3070 price from 729.99 to 629.99
+04/01 03:19 Zotac 3080 Ti price from 1849.99 to 1399.99
+04/01 03:19 Zotac 3060 price from 589.99 to 529.99
+04/01 03:19 Zotac 3080 Ti price from 1949.99 to 1449.99
+04/01 03:19 ASUS 3080 price from 1049.99 to 849.99
+04/01 03:19 Zotac 3060 Ti price from 699.99 to 649.99
+04/01 03:19 ASUS 3070 price from 829.99 to 749.99
+04/01 03:19 Zotac 3080 price from 1649.99 to 1299.99
+04/01 03:19 ASUS 3090 price from 2129.99 to 1899.99

@@ -11,8 +11,20 @@ import GPU_
 import Util
 
 DEFAULT_TIME_OUT = 60
+GPU_GOAL_PRICE = {
+    '3090 Ti': 0.0,
+    '3090': 0.0,
+    '3080 Ti': 0.0,
+    '3080': 800.0,
+    '3070 Ti': 700.0,
+    '3070': 600.0,
+    '3060 Ti': 0.0,
+    '3060': 0.0,
+    '3050 Ti': 0.0,
+    '3050': 0.0
+}
 
-def curses_screen(stdscr, products: GPU_.GPU, GPU_GOAL_MODEL = ["3080","3070 Ti","3070"], GPU_GOAL_PRICE = [800.00,700.00,600.00]):
+def curses_screen(stdscr, products: GPU_.GPU):
     curses.init_pair(1, curses.COLOR_BLUE, curses.COLOR_BLACK)
     curses.init_pair(2, curses.COLOR_CYAN, curses.COLOR_BLACK)
     curses.init_pair(3, curses.COLOR_GREEN, curses.COLOR_BLACK)
@@ -61,7 +73,7 @@ def curses_screen(stdscr, products: GPU_.GPU, GPU_GOAL_MODEL = ["3080","3070 Ti"
         if count_time == 0:
             Util.update_products(products)
             Util.update_json(products)
-            temp = Util.send_email_at_goal(products, GPU_GOAL_MODEL, GPU_GOAL_PRICE)
+            temp = Util.send_email_at_goal(products, GPU_GOAL_PRICE)
             if temp: last_sent = datetime.now().strftime("%m/%d %H:%M")
             count_time = DEFAULT_TIME_OUT
             continue
@@ -154,36 +166,40 @@ def curses_windows2(windows2, products, BLUE, YELLOW, WHITE, GREEN):
                 windows2.addstr(line, totalLen, title, WHITE)
             line += 1
     
-def screen_curses(products: GPU_.GPU, GPU_GOAL_MODEL = ["3080","3070 Ti","3070"], GPU_GOAL_PRICE = [800.00,700.00,600.00]):
-    wrapper(curses_screen, products, GPU_GOAL_MODEL, GPU_GOAL_PRICE)
+def screen_curses(products: GPU_.GPU):
+    wrapper(curses_screen, products)
 
 ## ------ tkinter ------
 
+count_time = DEFAULT_TIME_OUT
+
 ## only for setup tkinter and frames
-def screen_tk(products: GPU_.GPU, GPU_GOAL_MODEL = ["3080","3070 Ti","3070"], GPU_GOAL_PRICE = [800.00,700.00,600.00]):
+def screen_tk(products: GPU_.GPU):
     root = Tk()
     # root.geometry('500x200')
     root.title('GPU Price')
     main_frame = Frame(root)
     
     last_sent = '00/00 00:00'
-    count_time = 10
+    count_time = DEFAULT_TIME_OUT
     
     #status frame, at the top
     status_frame = Frame(main_frame)
     sent_label = Label(status_frame)
     time_label = Label(status_frame)
     count_label = Label(status_frame)
+    setting_btn = Button(status_frame, text="Setting", relief=GROOVE, height = 1, width=10, command=lambda: setting_windows(root))
     sent_label.grid(row=0, column=0, padx=20)
     time_label.grid(row=0, column=1, padx=20)
     count_label.grid(row=0, column=2, padx=20)
+    setting_btn.grid(row=0, column=3, padx=20)
     frame_status(sent_label, time_label, count_label, last_sent, count_time)
     status_frame.grid(row=0, column=0, columnspan=2)
     
     #log frame, on the right
     log_frame = LabelFrame(main_frame, text='Log')
     log_text = []
-    log_label = Label(log_frame, text='', width=35 ,anchor='nw')
+    log_label = Label(log_frame, text='', width=50 ,anchor='nw')
     log_label.pack()
     frame_log(log_label, log_text)
     log_frame.grid(row=1, column=1, padx = 1, pady= 1, sticky="nsew")
@@ -202,16 +218,18 @@ def screen_tk(products: GPU_.GPU, GPU_GOAL_MODEL = ["3080","3070 Ti","3070"], GP
     def update_main_frame(count_time, last_sent, log_text):
         frame_status(sent_label, time_label, count_label, last_sent, count_time)
         if count_time == 0:
-            count_time = 10
+            count_time = DEFAULT_TIME_OUT
             changed, changed_text = Util.update_products(products)
             if changed:
                 for text in changed_text:
-                    log_text.append(datetime.now().strftime("%m/%d %H:%M") + text)
+                    with open('log.txt', 'a') as f:
+                        f.write(datetime.now().strftime("%m/%d %H:%M") + " " + text + '\n')
+                    log_text.append(datetime.now().strftime("%m/%d %H:%M") + " " + text)
                 while len(log_text) > 10:
                     log_text.pop(0)
                 frame_log(log_label, log_text)
                 Util.update_json(products)
-                temp = Util.send_email_at_goal(products, GPU_GOAL_MODEL, GPU_GOAL_PRICE)
+                temp = Util.send_email_at_goal(products, GPU_GOAL_PRICE)
                 if temp: last_sent = datetime.now().strftime("%m/%d %H:%M")
                 
                 clear_frame(current_price_frame)
@@ -224,6 +242,99 @@ def screen_tk(products: GPU_.GPU, GPU_GOAL_MODEL = ["3080","3070 Ti","3070"], GP
     update_main_frame(count_time, last_sent, log_text)
     main_frame.pack(padx=10,pady=10)
     root.mainloop()
+    
+def setting_windows(root):
+    rows = 0
+    setting_win = Toplevel(root)
+    setting_win.title('Setting')
+    setting_win.geometry('300x500')
+    
+    time_title = Label(setting_win, text='Time interval: ')
+    time_input = Entry(setting_win, width=10)
+    time_input.insert(0, DEFAULT_TIME_OUT)
+    time_title.grid(row=rows, column=0, padx=5, pady=5)
+    time_input.grid(row=rows, column=1, padx=5, pady=5)
+    rows += 1
+    
+    goal_label = Label(setting_win, text='Price Goal', font=("Arial", 10))
+    goal_label.grid(row=rows, column=0, padx=5, pady=5)
+    rows += 1
+    _3090Ti_label = Label(setting_win, text='3090 Ti:')
+    _3090Ti_label.grid(row=rows, column=0, padx=5, pady=5)
+    _3090Ti_input = Entry(setting_win, width=10)
+    _3090Ti_input.insert(0, GPU_GOAL_PRICE['3090 Ti'])
+    _3090Ti_input.grid(row=rows, column=1, padx=5, pady=5)
+    rows += 1
+    _3090_label = Label(setting_win, text='3090:')
+    _3090_label.grid(row=rows, column=0, padx=5, pady=5)
+    _3090_input = Entry(setting_win, width=10)
+    _3090_input.insert(0, GPU_GOAL_PRICE['3090'])
+    _3090_input.grid(row=rows, column=1, padx=5, pady=5)
+    rows += 1
+    _3080Ti_label = Label(setting_win, text='3080 Ti:')
+    _3080Ti_label.grid(row=rows, column=0, padx=5, pady=5)
+    _3080Ti_input = Entry(setting_win, width=10)
+    _3080Ti_input.insert(0, GPU_GOAL_PRICE['3080 Ti'])
+    _3080Ti_input.grid(row=rows, column=1, padx=5, pady=5)
+    rows += 1
+    _3080_label = Label(setting_win, text='3080:')
+    _3080_label.grid(row=rows, column=0, padx=5, pady=5)
+    _3080_input = Entry(setting_win, width=10)
+    _3080_input.insert(0, GPU_GOAL_PRICE['3080'])
+    _3080_input.grid(row=rows, column=1, padx=5, pady=5)
+    rows += 1
+    _3070Ti_label = Label(setting_win, text='3070 Ti:')
+    _3070Ti_label.grid(row=rows, column=0, padx=5, pady=5)
+    _3070Ti_input = Entry(setting_win, width=10)
+    _3070Ti_input.insert(0, GPU_GOAL_PRICE['3070 Ti'])
+    _3070Ti_input.grid(row=rows, column=1, padx=5, pady=5)
+    rows += 1
+    _3070_label = Label(setting_win, text='3070:')
+    _3070_label.grid(row=rows, column=0, padx=5, pady=5)
+    _3070_input = Entry(setting_win, width=10)
+    _3070_input.insert(0, GPU_GOAL_PRICE['3070'])
+    _3070_input.grid(row=rows, column=1, padx=5, pady=5)
+    rows += 1
+    _3060Ti_label = Label(setting_win, text='3060 Ti:')
+    _3060Ti_label.grid(row=rows, column=0, padx=5, pady=5)
+    _3060Ti_input = Entry(setting_win, width=10)
+    _3060Ti_input.insert(0, GPU_GOAL_PRICE['3060 Ti'])
+    _3060Ti_input.grid(row=rows, column=1, padx=5, pady=5)
+    rows += 1
+    _3060_label = Label(setting_win, text='3060:')
+    _3060_label.grid(row=rows, column=0, padx=5, pady=5)
+    _3060_input = Entry(setting_win, width=10)
+    _3060_input.insert(0, GPU_GOAL_PRICE['3060'])
+    _3060_input.grid(row=rows, column=1, padx=5, pady=5)
+    rows += 1
+    _3050_label = Label(setting_win, text='3050:')
+    _3050_label.grid(row=rows, column=0, padx=5, pady=5)
+    _3050_input = Entry(setting_win, width=10)
+    _3050_input.insert(0, GPU_GOAL_PRICE['3050'])
+    _3050_input.grid(row=rows, column=1, padx=5, pady=5)
+    rows += 1
+    
+    def set_input():
+        global DEFAULT_TIME_OUT
+        global GPU_GOAL_PRICE
+        try:
+            DEFAULT_TIME_OUT = int(time_input.get())
+            GPU_GOAL_PRICE['3090 Ti'] = float(_3090Ti_input.get())
+            GPU_GOAL_PRICE['3090'] = float(_3090_input.get())
+            GPU_GOAL_PRICE['3080 Ti'] = float(_3080Ti_input.get())
+            GPU_GOAL_PRICE['3080'] = float(_3080_input.get())
+            GPU_GOAL_PRICE['3070 Ti'] = float(_3070Ti_input.get())
+            GPU_GOAL_PRICE['3070'] = float(_3070_input.get())
+            GPU_GOAL_PRICE['3060 Ti'] = float(_3060Ti_input.get())
+            GPU_GOAL_PRICE['3060'] = float(_3060_input.get())
+            GPU_GOAL_PRICE['3050'] = float(_3050_input.get())
+        except Exception as e:
+            print(e)
+
+    set_btn = Button(setting_win, text='Set', height=1, width=10, command=lambda: [set_input(), setting_win.destroy()])
+    set_btn.grid(row=rows, column=0, padx=5, pady=5)
+    Close_btn = Button(setting_win, text='Close', height=1, width=10, command=lambda: setting_win.destroy())
+    Close_btn.grid(row=rows, column=1, padx=5, pady=5)
 
 def frame_log(log_label: Label, log_text):
     resutl_text = ''
@@ -294,7 +405,7 @@ def frame_stock(frame, products: GPU_.GPU):
             columns += 1
             Label(frame, text=f'({stock}) ', fg='green').grid(row=rows, column=columns)
             columns += 1
-            Button(frame, text=f'{title}', fg='black', relief=GROOVE, height = 1, width=50, anchor='w', command=lambda n=link:webbrowser.open(n)).grid(row=rows, column=columns)
+            Button(frame, text=f'{title}', fg='black', relief=GROOVE, height = 1, width=70, anchor='w', command=lambda n=link:webbrowser.open(n)).grid(row=rows, column=columns)
             columns += 1
             rows, columns = rows+1, 0
     return
