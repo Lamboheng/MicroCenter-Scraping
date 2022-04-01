@@ -5,3 +5,4 @@ google-auth-oauthlib==0.4.0
 beautifulsoup4
 requests
 windows-curses
+tk

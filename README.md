@@ -1,5 +1,5 @@
 # MicroCenter-Scraping
-## About The Project
+## About This Project
 Console interface, Micro Center, RTX cards, tracker
 Email you when price has drop to target price
 
@@ -21,5 +21,6 @@ python3 main.py
 - [x] record price history store to json
 - [x] send email with price drop
 - [x] interface
+    - [x] setting
     - [ ] history graph
     - [ ] every graphic card history
