@@ -1,9 +1,11 @@
-import curses
-import sys
 from curses import wrapper
 from tkinter import *
 from datetime import datetime
+import curses
+import sys
 import time
+from turtle import width
+import webbrowser
 
 import GPU_
 import Util
@@ -165,32 +167,75 @@ def screen_tk(products: GPU_.GPU, GPU_GOAL_MODEL = ["3080","3070 Ti","3070"], GP
     main_frame = Frame(root)
     
     last_sent = '00/00 00:00'
-    label1 = Label(main_frame)
-    label1.pack()
+    count_time = 10
+    
+    #status frame, at the top
+    status_frame = Frame(main_frame)
+    sent_label = Label(status_frame)
+    time_label = Label(status_frame)
+    count_label = Label(status_frame)
+    sent_label.grid(row=0, column=0, padx=20)
+    time_label.grid(row=0, column=1, padx=20)
+    count_label.grid(row=0, column=2, padx=20)
+    frame_status(sent_label, time_label, count_label, last_sent, count_time)
+    status_frame.grid(row=0, column=0, columnspan=2)
+    
+    #log frame, on the right
+    log_frame = LabelFrame(main_frame, text='Log')
+    log_text = []
+    log_label = Label(log_frame, text='', width=35 ,anchor='nw')
+    log_label.pack()
+    frame_log(log_label, log_text)
+    log_frame.grid(row=1, column=1, padx = 1, pady= 1, sticky="nsew")
+    
+    #price and stock frame, left and bottom
     current_price_frame = LabelFrame(main_frame, text='Current price')
     current_stock_frame = LabelFrame(main_frame, text='Lowest stock')
-    current_price_frame.pack(padx = 10, pady= 5)
-    current_stock_frame.pack(padx = 10, pady= 5)
+    current_price_frame.grid(row=1, column=0, padx = 1, pady= 1, sticky="nsew")
+    current_stock_frame.grid(row=2, column=0, padx = 1, pady= 1, sticky="nsew", columnspan=2)
+    clear_frame(current_price_frame)
+    clear_frame(current_stock_frame)
+    frame_price(current_price_frame, products)
+    frame_stock(current_stock_frame, products)
     
     ## every frame update at this function
-    def update_main_frame():
-        if Util.update_products(products):
-            Util.update_json(products)
-            temp = Util.send_email_at_goal()
-            if temp: last_sent = datetime.now().strftime("%m/%d %H:%M")
-        label1.config(text=datetime.now().strftime('%H:%M:%S %p'))
-        
-        clear_frame(current_price_frame)
-        clear_frame(current_stock_frame)
-        frame_price(current_price_frame, products)
-        frame_stock(current_stock_frame, products)
-        
-        main_frame.after(1000, update_main_frame)
+    def update_main_frame(count_time, last_sent, log_text):
+        frame_status(sent_label, time_label, count_label, last_sent, count_time)
+        if count_time == 0:
+            count_time = 10
+            changed, changed_text = Util.update_products(products)
+            if changed:
+                for text in changed_text:
+                    log_text.append(datetime.now().strftime("%m/%d %H:%M") + text)
+                while len(log_text) > 10:
+                    log_text.pop(0)
+                frame_log(log_label, log_text)
+                Util.update_json(products)
+                temp = Util.send_email_at_goal(products, GPU_GOAL_MODEL, GPU_GOAL_PRICE)
+                if temp: last_sent = datetime.now().strftime("%m/%d %H:%M")
+                
+                clear_frame(current_price_frame)
+                clear_frame(current_stock_frame)
+                frame_price(current_price_frame, products)
+                frame_stock(current_stock_frame, products)
+        count_time -= 1
+        status_frame.after(1000, lambda: update_main_frame(count_time, last_sent, log_text))
             
-    update_main_frame()
+    update_main_frame(count_time, last_sent, log_text)
     main_frame.pack(padx=10,pady=10)
     root.mainloop()
 
+def frame_log(log_label: Label, log_text):
+    resutl_text = ''
+    for i in reversed(range(len(log_text))):
+        resutl_text += log_text[i] + '\n'
+    if len(resutl_text) == 0: resutl_text = 'Nothing'
+    log_label.config(text=resutl_text)
+
+def frame_status(sent_label: Label, time_label: Label, count_label: Label, last_sent, count_time):
+    sent_label.config(text= 'Last email: ' + last_sent)
+    time_label.config(text= 'Live time: ' + datetime.now().strftime('%H:%M:%S %p'))
+    count_label.config(text= 'Next update: ' + str(count_time))
 
 ## pull data from products and put it to frame
 def frame_price(frame, products: GPU_.GPU):
@@ -205,7 +250,7 @@ def frame_price(frame, products: GPU_.GPU):
         label = Label(frame, text=f' <- ', fg='blue')
         label.grid(row=rows, column=columns)
         columns +=1
-        label = Label(frame, text=f'{model}', fg='black')
+        label = Button(frame, text=f'{model}', fg='black', relief=GROOVE, height = 1, width=10)
         label.grid(row=rows, column=columns)
         columns +=1
         label = Label(frame, text=f' -> ', fg='blue')
@@ -230,6 +275,7 @@ def frame_stock(frame, products: GPU_.GPU):
         lowest = sys.float_info.max
         title = ""
         stock = 0
+        link = ""
         for product in products:
             if product.get_model() == model and product.get_stock() > 0:
                 found = True
@@ -237,6 +283,7 @@ def frame_stock(frame, products: GPU_.GPU):
                     lowest = product.get_price()
                     title = product.get_title()
                     stock = product.get_stock()
+                    link = product.get_link()
         if found:
             temp_str = model
             if len(temp_str) < 7:
@@ -247,13 +294,14 @@ def frame_stock(frame, products: GPU_.GPU):
             columns += 1
             Label(frame, text=f'({stock}) ', fg='green').grid(row=rows, column=columns)
             columns += 1
-            Label(frame, text=f'{title[0:50]}', fg='black').grid(row=rows, column=columns)
+            Button(frame, text=f'{title}', fg='black', relief=GROOVE, height = 1, width=50, anchor='w', command=lambda n=link:webbrowser.open(n)).grid(row=rows, column=columns)
             columns += 1
             rows, columns = rows+1, 0
     return
 
+def web_link(link):
+    webbrowser.open(link)
+
 def clear_frame(frame):
     for widget in frame.winfo_children():
         widget.destroy()
-    
-        

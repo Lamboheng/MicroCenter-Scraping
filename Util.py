@@ -30,10 +30,11 @@ def update_products(products: GPU_.GPU):
     SKUs = HTML_.get_html_SKU(html)
     links = HTML_.get_html_link(html)
     changed = False
+    changed_text = []
     if (len(titles) == len(prices) and len(prices) == len(stocks) and len(stocks) == len(SKUs) and len(SKUs) == len(links)):
-        for product in products:
+        for i in range(len(titles)):
             found = False
-            for i in range(len(titles)):
+            for product in products:
                 if product.get_SKU() == SKUs[i]:
                     found = True
                     if product.get_title() != titles[i]:
@@ -47,14 +48,16 @@ def update_products(products: GPU_.GPU):
                         product.set_link(links[i])
                     if product.get_price() != float(prices[i]):
                         changed = True
+                        changed_text.append(f"{product.get_brand()} {product.get_model()} price from {str(product.get_price())} to {str(float(prices[i]))}")
                         product.set_price(float(prices[i]))
                     if product.get_stock() != int(stocks[i]):
                         changed = True
+                        changed_text.append(f"{product.get_brand()} {product.get_model()} stock from {str(product.get_stock())} to {str(int(stocks[i]))}")
                         product.set_stock(int(stocks[i]))
                     break
             if found == False:
                 products.append(GPU_.GPU(title=titles[i], price=prices[i], stock=stocks[i], SKU=SKUs[i], link=links[i]))
-    return changed
+    return changed, changed_text
             
 def update_json(products: GPU_.GPU):
     if os.path.exists(DEFAULT_RECORD_NAME):
