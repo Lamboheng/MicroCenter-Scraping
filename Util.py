@@ -2,12 +2,25 @@ import sys
 import os.path
 import json
 from datetime import datetime
+from datetime import timedelta
 
 import HTML_
 import GPU_
 import Email_
 
 DEFAULT_RECORD_NAME = "records.json"
+GPU_GOAL_PRICE = {
+    '3090 Ti': 0.0,
+    '3090': 0.0,
+    '3080 Ti': 0.0,
+    '3080': 800.0,
+    '3070 Ti': 700.0,
+    '3070': 600.0,
+    '3060 Ti': 0.0,
+    '3060': 0.0,
+    '3050 Ti': 0.0,
+    '3050': 0.0
+}
 
 ## if records.json is exists, load json to products
 ## if not, reload from the website
@@ -180,6 +193,7 @@ def send_email_at_goal(products: GPU_.GPU, price_goal):
     lowest = sys.float_info.max
     found = False
     lowest_product = products[0]
+    result_product = []
     sent = False;
     for i in range(len(GPU_.GPU_MODELS)):
         for product in products:
@@ -189,10 +203,12 @@ def send_email_at_goal(products: GPU_.GPU, price_goal):
                 lowest_product = product
         if found and lowest < price_goal[i]:
             sent = True
+            result_product.append(lowest_product)
             Email_.send_email(lowest_product)
+            GPU_GOAL_PRICE[lowest_product.get_model()] -= 100
         lowest = sys.float_info.max
         found = False
-    return sent
+    return sent, result_product
 
 def find_lowest_highest(products: GPU_.GPU):
     lowest_price = {}
@@ -207,3 +223,25 @@ def find_lowest_highest(products: GPU_.GPU):
             highest_price[product.model] = product.price
             
     return lowest_price, highest_price
+
+def clear_json_file():
+    with open(DEFAULT_RECORD_NAME, "r") as f:
+        datas = json.load(f)
+        
+    before_date = "01/01/1990 00:00:00"
+    for data in datas:
+        before_date = "01/01/1990 00:00:00"
+        i = 0
+        while i < len(datas[data]['stock_records']):
+            for date_str in datas[data]['stock_records'][i]:
+                date = datetime.strptime(date_str, "%m/%d/%Y %H:%M:%S")
+            if date < datetime.strptime(before_date, "%m/%d/%Y %H:%M:%S") + timedelta(minutes=5):
+                print("delete: " + data + " " + date_str + "  value = " + str(datas[data]['stock_records'][i][date_str]))
+                datas[data]['stock_records'].pop(i-1)
+                before_date = date_str
+            else:
+                before_date = date_str
+                i += 1
+
+    with open('records2.json', 'w') as f:
+        json.dump(datas, f, indent=2)

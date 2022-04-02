@@ -1,28 +1,17 @@
 from curses import wrapper
 from tkinter import *
+from tkinter import messagebox
 from datetime import datetime
+from Util import GPU_GOAL_PRICE
 import curses
 import sys
 import time
-from turtle import width
 import webbrowser
 
 import GPU_
 import Util
 
 DEFAULT_TIME_OUT = 60
-GPU_GOAL_PRICE = {
-    '3090 Ti': 0.0,
-    '3090': 0.0,
-    '3080 Ti': 0.0,
-    '3080': 800.0,
-    '3070 Ti': 700.0,
-    '3070': 600.0,
-    '3060 Ti': 0.0,
-    '3060': 0.0,
-    '3050 Ti': 0.0,
-    '3050': 0.0
-}
 
 def curses_screen(stdscr, products: GPU_.GPU):
     curses.init_pair(1, curses.COLOR_BLUE, curses.COLOR_BLACK)
@@ -199,9 +188,7 @@ def screen_tk(products: GPU_.GPU):
     #log frame, on the right
     log_frame = LabelFrame(main_frame, text='Log')
     log_text = []
-    log_label = Label(log_frame, text='', width=50 ,anchor='nw')
-    log_label.pack()
-    frame_log(log_label, log_text)
+    frame_log(log_frame, log_text)
     log_frame.grid(row=1, column=1, padx = 1, pady= 1, sticky="nsew")
     
     #price and stock frame, left and bottom
@@ -221,17 +208,27 @@ def screen_tk(products: GPU_.GPU):
             count_time = DEFAULT_TIME_OUT
             changed, changed_text = Util.update_products(products)
             if changed:
+                # display any changes in log frame
                 for text in changed_text:
                     with open('log.txt', 'a') as f:
                         f.write(datetime.now().strftime("%m/%d %H:%M") + " " + text + '\n')
                     log_text.append(datetime.now().strftime("%m/%d %H:%M") + " " + text)
                 while len(log_text) > 10:
                     log_text.pop(0)
-                frame_log(log_label, log_text)
-                Util.update_json(products)
-                temp = Util.send_email_at_goal(products, GPU_GOAL_PRICE)
-                if temp: last_sent = datetime.now().strftime("%m/%d %H:%M")
+                frame_log(log_frame, log_text)
                 
+                # update json file
+                Util.update_json(products)
+                Util.clear_json_file()
+                
+                #send email, return True is the email is sent, and list of sent products
+                temp, result_products = Util.send_email_at_goal(products, GPU_GOAL_PRICE)
+                if temp: 
+                    for result in result_products:
+                        messagebox.showwarning("Price Alert!", f"{result.get_brand()} {result.get_model()} {result.get_price()}")
+                    last_sent = datetime.now().strftime("%m/%d %H:%M")
+                
+                #update price and stock frame
                 clear_frame(current_price_frame)
                 clear_frame(current_stock_frame)
                 frame_price(current_price_frame, products)
@@ -336,12 +333,12 @@ def setting_windows(root):
     Close_btn = Button(setting_win, text='Close', height=1, width=10, command=lambda: setting_win.destroy())
     Close_btn.grid(row=rows, column=1, padx=5, pady=5)
 
-def frame_log(log_label: Label, log_text):
-    resutl_text = ''
+def frame_log(log_frame, log_text):
+    clear_frame(log_frame)
     for i in reversed(range(len(log_text))):
-        resutl_text += log_text[i] + '\n'
-    if len(resutl_text) == 0: resutl_text = 'Nothing'
-    log_label.config(text=resutl_text)
+        Label(log_frame, text=log_text[i], width=50, anchor='w').pack(anchor='sw', padx=5)
+    if len(log_text) == 0:
+        Label(log_frame, text='Nothing', width=50, anchor='w').pack(anchor="sw", padx=5)
 
 def frame_status(sent_label: Label, time_label: Label, count_label: Label, last_sent, count_time):
     sent_label.config(text= 'Last email: ' + last_sent)
@@ -410,9 +407,19 @@ def frame_stock(frame, products: GPU_.GPU):
             rows, columns = rows+1, 0
     return
 
-def web_link(link):
-    webbrowser.open(link)
-
 def clear_frame(frame):
     for widget in frame.winfo_children():
         widget.destroy()
+
+def text_log():
+    text = [
+    '04/01 15:52 MSI 3050 stock from 13 to 12',
+    '04/01 15:56 MSI 3050 stock from 12 to 13',
+    '04/01 16:01 MSI 3050 stock from 13 to 12',
+    '04/01 16:03 Gigabyte 3080 Ti stock from 5 to 4',
+    '04/01 16:14 Gigabyte 3080 Ti stock from 4 to 3',
+    '04/01 16:15 Gigabyte 3080 Ti stock from 3 to 4',
+    '04/01 16:17 Gigabyte 3080 Ti stock from 4 to 2',
+    '04/01 16:17 Gigabyte 3080 Ti stock from 13 to 12'
+    ]
+    return text
