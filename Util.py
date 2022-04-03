@@ -236,12 +236,11 @@ def clear_json_file():
             for date_str in datas[data]['stock_records'][i]:
                 date = datetime.strptime(date_str, "%m/%d/%Y %H:%M:%S")
             if date < datetime.strptime(before_date, "%m/%d/%Y %H:%M:%S") + timedelta(minutes=5):
-                print("delete: " + data + " " + date_str + "  value = " + str(datas[data]['stock_records'][i][date_str]))
                 datas[data]['stock_records'].pop(i-1)
                 before_date = date_str
             else:
                 before_date = date_str
                 i += 1
 
-    with open('records2.json', 'w') as f:
+    with open(DEFAULT_RECORD_NAME, 'w') as f:
         json.dump(datas, f, indent=2)
