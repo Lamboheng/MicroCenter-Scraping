@@ -6,3 +6,6 @@ beautifulsoup4
 requests
 windows-curses
 tk
+matplotlib
+mplcursors
+datetime

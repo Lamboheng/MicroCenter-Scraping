@@ -514,3 +514,78 @@
 04/03 15:34 Zotac 3050 stock from 1 to 0
 04/03 15:36 Zotac 3050 stock from 0 to 1
 04/03 15:39 Zotac 3050 stock from 1 to 0
+04/03 16:39 ASUS 3080 stock from 5 to 4
+04/03 16:41 ASUS 3080 stock from 4 to 5
+04/03 16:42 ASUS 3080 stock from 5 to 4
+04/03 16:44 ASUS 3080 stock from 4 to 5
+04/03 16:46 ASUS 3080 stock from 5 to 4
+04/03 19:12 Zotac 3080 Ti stock from 16 to 15
+04/03 19:13 Zotac 3080 Ti stock from 7 to 6
+04/03 19:14 Zotac 3080 Ti stock from 6 to 7
+04/03 19:14 Zotac 3080 Ti stock from 15 to 16
+04/03 19:15 Zotac 3080 Ti stock from 16 to 15
+04/03 19:16 Zotac 3080 Ti stock from 15 to 16
+04/03 19:17 Zotac 3080 Ti stock from 7 to 6
+04/03 19:17 Zotac 3080 Ti stock from 16 to 15
+04/03 19:20 Zotac 3080 Ti stock from 6 to 7
+04/03 19:21 Zotac 3080 Ti stock from 7 to 6
+04/03 20:21 MSI 3070 Ti stock from 0 to 1
+04/03 20:21 MSI 3070 Ti stock from 0 to 2
+04/03 20:21 Gigabyte 3080 Ti stock from 0 to 3
+04/03 20:21 ASUS 3060 Ti stock from 0 to 2
+04/03 20:21 ASUS 3080 Ti stock from 0 to 1
+04/03 20:21 ASUS 3060 stock from 0 to 2
+04/03 20:21 ASUS 3060 stock from 0 to 2
+04/03 20:21 ASUS 3080 stock from 17 to 18
+04/03 20:21 ASUS 3070 stock from 0 to 4
+04/03 20:21 ASUS 3080 Ti stock from 0 to 1
+04/03 20:22 MSI 3070 Ti stock from 1 to 0
+04/03 20:22 MSI 3070 Ti stock from 2 to 0
+04/03 20:22 Gigabyte 3080 Ti stock from 3 to 0
+04/03 20:22 ASUS 3060 Ti stock from 2 to 0
+04/03 20:22 ASUS 3080 Ti stock from 1 to 0
+04/03 20:22 ASUS 3060 stock from 2 to 0
+04/03 20:22 ASUS 3060 stock from 2 to 0
+04/03 20:22 ASUS 3080 stock from 18 to 17
+04/03 20:22 ASUS 3070 stock from 4 to 0
+04/03 20:22 ASUS 3080 Ti stock from 1 to 0
+04/03 20:24 MSI 3070 Ti stock from 0 to 1
+04/03 20:24 MSI 3070 Ti stock from 0 to 2
+04/03 20:24 Gigabyte 3080 Ti stock from 0 to 3
+04/03 20:24 ASUS 3060 Ti stock from 0 to 2
+04/03 20:24 ASUS 3080 Ti stock from 0 to 1
+04/03 20:24 ASUS 3060 stock from 0 to 2
+04/03 20:24 ASUS 3060 stock from 0 to 2
+04/03 20:24 ASUS 3080 stock from 17 to 18
+04/03 20:24 ASUS 3070 stock from 0 to 4
+04/03 20:24 ASUS 3080 Ti stock from 0 to 1
+04/03 20:25 MSI 3070 Ti stock from 1 to 0
+04/03 20:25 MSI 3070 Ti stock from 2 to 0
+04/03 20:25 Gigabyte 3080 Ti stock from 3 to 0
+04/03 20:25 ASUS 3060 Ti stock from 2 to 0
+04/03 20:25 ASUS 3080 Ti stock from 1 to 0
+04/03 20:25 ASUS 3060 stock from 2 to 0
+04/03 20:25 ASUS 3060 stock from 2 to 0
+04/03 20:25 ASUS 3080 stock from 18 to 17
+04/03 20:25 ASUS 3070 stock from 4 to 0
+04/03 20:25 ASUS 3080 Ti stock from 1 to 0
+04/03 20:27 MSI 3070 Ti stock from 0 to 1
+04/03 20:27 MSI 3070 Ti stock from 0 to 2
+04/03 20:27 Gigabyte 3080 Ti stock from 0 to 3
+04/03 20:27 ASUS 3060 Ti stock from 0 to 2
+04/03 20:27 ASUS 3080 Ti stock from 0 to 1
+04/03 20:27 ASUS 3060 stock from 0 to 2
+04/03 20:27 ASUS 3060 stock from 0 to 2
+04/03 20:27 ASUS 3080 stock from 17 to 18
+04/03 20:27 ASUS 3070 stock from 0 to 4
+04/03 20:27 ASUS 3080 Ti stock from 0 to 1
+04/03 20:28 MSI 3070 Ti stock from 1 to 0
+04/03 20:28 MSI 3070 Ti stock from 2 to 0
+04/03 20:28 Gigabyte 3080 Ti stock from 3 to 0
+04/03 20:28 ASUS 3060 Ti stock from 2 to 0
+04/03 20:28 ASUS 3080 Ti stock from 1 to 0
+04/03 20:28 ASUS 3060 stock from 2 to 0
+04/03 20:28 ASUS 3060 stock from 2 to 0
+04/03 20:28 ASUS 3080 stock from 18 to 17
+04/03 20:28 ASUS 3070 stock from 4 to 0
+04/03 20:28 ASUS 3080 Ti stock from 1 to 0

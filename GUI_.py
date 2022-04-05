@@ -2,161 +2,26 @@ from curses import wrapper
 from tkinter import *
 from tkinter import messagebox
 from datetime import datetime
-from Util import GPU_GOAL_PRICE
+from datetime import timedelta
+from Util import GPU_GOAL_PRICE, DEFAULT_RECORD_NAME
 import curses
 import sys
 import time
+import json
 import webbrowser
+
+from matplotlib import pyplot as plt
+from matplotlib import dates as mpl_dates
+
+from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
+from matplotlib.backends.backend_tkagg import NavigationToolbar2Tk
+
+import mplcursors as mpc
 
 import GPU_
 import Util
 
 DEFAULT_TIME_OUT = 60
-
-def curses_screen(stdscr, products: GPU_.GPU):
-    curses.init_pair(1, curses.COLOR_BLUE, curses.COLOR_BLACK)
-    curses.init_pair(2, curses.COLOR_CYAN, curses.COLOR_BLACK)
-    curses.init_pair(3, curses.COLOR_GREEN, curses.COLOR_BLACK)
-    curses.init_pair(4, curses.COLOR_MAGENTA, curses.COLOR_BLACK)
-    curses.init_pair(5, curses.COLOR_RED, curses.COLOR_BLACK)
-    curses.init_pair(6, curses.COLOR_WHITE, curses.COLOR_BLACK)
-    curses.init_pair(7, curses.COLOR_YELLOW, curses.COLOR_BLACK)
-    curses.init_pair(8, curses.COLOR_BLACK, curses.COLOR_BLACK)
-    BLUE = curses.color_pair(1)
-    CYAN = curses.color_pair(2)
-    GREEN = curses.color_pair(3)
-    MAGENTA = curses.color_pair(4)
-    RED = curses.color_pair(5)
-    WHITE = curses.color_pair(6)
-    YELLOW = curses.color_pair(7)
-    BLACK = curses.color_pair(8)
-    
-    stdscr.nodelay(True)
-    count_time = DEFAULT_TIME_OUT
-    last_sent = "00/00 00:00"
-    while True:
-        rows, cols = stdscr.getmaxyx()
-        if rows > 22 and cols > 80:
-            windows3 = curses.newwin(1,75, 1, 1)
-            windows3.clear()
-            windows3.addstr(0, 0, f"'R'/Refresh   'DEL'/Exit   Next update: {count_time}   last email at {last_sent}")
-            if count_time == DEFAULT_TIME_OUT:
-                stdscr.clear()
-                windows1 = curses.newwin(10, 70, 2, int(cols/2)-35)
-                windows2 = curses.newwin(12, 70, 12, int(cols/2)-35)
-                windows1.clear()
-                windows2.clear()
-                stdscr.attron(WHITE)
-                stdscr.border()
-                stdscr.attroff(WHITE)
-                curses_windows1(windows1, products, BLUE, BLACK, RED, YELLOW, GREEN)
-                curses_windows2(windows2, products, BLUE, YELLOW, WHITE, GREEN)
-                # stdscr.move(rows-1,cols-1)
-                stdscr.refresh()
-                windows1.refresh()
-                windows2.refresh()
-            windows3.refresh()
-        else:
-            stdscr.refresh()
-            
-        if count_time == 0:
-            Util.update_products(products)
-            Util.update_json(products)
-            temp = Util.send_email_at_goal(products, GPU_GOAL_PRICE)
-            if temp: last_sent = datetime.now().strftime("%m/%d %H:%M")
-            count_time = DEFAULT_TIME_OUT
-            continue
-        else:
-            count_time -= 1
-            time.sleep(1)
-        try:
-            key = stdscr.getkey()
-        except:
-            key = None
-        if key == "KEY_DC":
-            break
-        if key == "r":
-            count_time = DEFAULT_TIME_OUT
-            continue
-
-def curses_windows1(windows1, products, BLUE, BLACK, RED, YELLOW, GREEN):
-    windows1.attron(BLUE)
-    windows1.border()
-    windows1.attroff(BLUE)
-
-    products_lowest_price, products_highest_price = Util.find_lowest_highest(products)
-    
-    for i in range(len(GPU_.GPU_MODELS)):
-        if GPU_.GPU_MODELS[i] not in products_lowest_price.keys():
-            continue
-        totalLen = 1
-        windows1.addstr(i+1, totalLen, "                   ", BLACK)
-        totalLen += len("                   ")
-        if len(str(products_highest_price[GPU_.GPU_MODELS[i]])) < 7:
-            windows1.addstr(i+1, totalLen, " " + str(products_highest_price[GPU_.GPU_MODELS[i]]), RED)
-            totalLen += len(str(products_highest_price[GPU_.GPU_MODELS[i]])) + 1
-        else:
-            windows1.addstr(i+1, totalLen, str(products_highest_price[GPU_.GPU_MODELS[i]]), RED)
-            totalLen += len(str(products_highest_price[GPU_.GPU_MODELS[i]]))
-        windows1.addstr(i+1, totalLen, " <- ", BLUE)
-        totalLen += len(str(" <- "))
-        if len(GPU_.GPU_MODELS[i]) < 7:
-            windows1.addstr(i+1, totalLen, "  " + GPU_.GPU_MODELS[i] + " ", YELLOW)
-            totalLen += len(str(GPU_.GPU_MODELS[i])) + 3
-        else:
-            windows1.addstr(i+1, totalLen, GPU_.GPU_MODELS[i], YELLOW)
-            totalLen += len(str(GPU_.GPU_MODELS[i]))
-        windows1.addstr(i+1, totalLen, " -> ", BLUE)
-        totalLen += len(str(" -> "))
-        windows1.addstr(i+1, totalLen, str(products_lowest_price[GPU_.GPU_MODELS[i]]), GREEN)
-
-def curses_windows2(windows2, products, BLUE, YELLOW, WHITE, GREEN):
-    windows2.attron(BLUE)
-    windows2.border()
-    windows2.attroff(BLUE)
-    windows2.addstr(1,1, 'Lowest in stock:', BLUE)
-    windows2.addstr(2,1, ' GPU      Price   Stock Name')
-    line = 3
-    for model in GPU_.GPU_MODELS:
-        found = False
-        lowest = sys.float_info.max
-        title = ""
-        stock = 0
-        for product in products:
-            if product.get_model() == model and product.get_stock() > 0:
-                found = True
-                if product.get_price() < lowest:
-                    lowest = product.get_price()
-                    title = product.get_title()
-                    stock = product.get_stock()
-        if found:
-            totalLen = 2
-            if len(model) < 7:
-                windows2.addstr(line, totalLen, str(f'{model}   : '), YELLOW)
-                totalLen += len(str(f'{model}   : '))
-            else:
-                windows2.addstr(line, totalLen, str(f'{model}: '), YELLOW)
-                totalLen += len(str(f'{model}: '))
-            if len(str(lowest)) < 7:
-                windows2.addstr(line, totalLen, " " + str(lowest) + " ", GREEN)
-                totalLen += len(" " + str(lowest) + " ")
-            else:
-                windows2.addstr(line, totalLen, str(lowest) + " ", GREEN)
-                totalLen += len(str(lowest) + " ")
-            if len(str(stock)) < 2:
-                windows2.addstr(line, totalLen, " (" + str(stock) + ")  ", GREEN)
-                totalLen += len(" (" + str(stock) + ")  ")
-            else:
-                windows2.addstr(line, totalLen, "(" + str(stock) + ")  ", GREEN)
-                totalLen += len("(" + str(stock) + ")  ")
-            if len(title) > 43:
-                windows2.addstr(line, totalLen, title[0:43], WHITE)
-            else:
-                windows2.addstr(line, totalLen, title, WHITE)
-            line += 1
-    
-def screen_curses(products: GPU_.GPU):
-    wrapper(curses_screen, products)
 
 ## ------ tkinter ------
 
@@ -244,9 +109,9 @@ def setting_windows(root):
     rows = 0
     setting_win = Toplevel(root)
     setting_win.title('Setting')
-    setting_win.geometry('300x500')
+    setting_win.geometry('250x410')
     
-    time_title = Label(setting_win, text='Time interval: ')
+    time_title = Label(setting_win, text='Time interval(min 10):')
     time_input = Entry(setting_win, width=10)
     time_input.insert(0, DEFAULT_TIME_OUT)
     time_title.grid(row=rows, column=0, padx=5, pady=5)
@@ -315,7 +180,8 @@ def setting_windows(root):
         global DEFAULT_TIME_OUT
         global GPU_GOAL_PRICE
         try:
-            DEFAULT_TIME_OUT = int(time_input.get())
+            if int(time_input.get()) >= 10:
+                DEFAULT_TIME_OUT = int(time_input.get())
             GPU_GOAL_PRICE['3090 Ti'] = float(_3090Ti_input.get())
             GPU_GOAL_PRICE['3090'] = float(_3090_input.get())
             GPU_GOAL_PRICE['3080 Ti'] = float(_3080Ti_input.get())
@@ -358,7 +224,7 @@ def frame_price(frame, products: GPU_.GPU):
         label = Label(frame, text=f' <- ', fg='blue')
         label.grid(row=rows, column=columns)
         columns +=1
-        label = Button(frame, text=f'{model}', fg='black', relief=GROOVE, height = 1, width=10)
+        label = Button(frame, text=f'{model}', fg='black', relief=GROOVE, command=lambda m=model: plotGraphFromFile(frame, "model", m) ,height = 1, width=10)
         label.grid(row=rows, column=columns)
         columns +=1
         label = Label(frame, text=f' -> ', fg='blue')
@@ -411,15 +277,99 @@ def clear_frame(frame):
     for widget in frame.winfo_children():
         widget.destroy()
 
-def text_log():
-    text = [
-    '04/01 15:52 MSI 3050 stock from 13 to 12',
-    '04/01 15:56 MSI 3050 stock from 12 to 13',
-    '04/01 16:01 MSI 3050 stock from 13 to 12',
-    '04/01 16:03 Gigabyte 3080 Ti stock from 5 to 4',
-    '04/01 16:14 Gigabyte 3080 Ti stock from 4 to 3',
-    '04/01 16:15 Gigabyte 3080 Ti stock from 3 to 4',
-    '04/01 16:17 Gigabyte 3080 Ti stock from 4 to 2',
-    '04/01 16:17 Gigabyte 3080 Ti stock from 13 to 12'
-    ]
-    return text
+def plotGraphFromFile(root, selecter: str, name: str):
+    data_price_dic = {}
+    data_stock_dic = {}
+    data_date = []
+    data_price = []
+    data_stock = []
+    
+    with open(DEFAULT_RECORD_NAME, "r") as f:
+        datas = json.load(f)
+    for data in datas:
+        if (datas[data][selecter] == name):
+            for dic in datas[data]['price_records']: # look for the price record
+                for key in dic: #only runs once
+                    date = datetime.strptime(key, "%m/%d/%Y %H:%M:%S")
+                    date = date.replace(hour=0, minute=0, second=0)
+                    if date in data_price_dic:
+                        if float(data_price_dic[date]) > float(dic[key]):
+                            data_price_dic[date] = dic[key]
+                    else:
+                        data_price_dic[date] = dic[key]
+            for dic in datas[data]['stock_records']: # look for the stock record
+                for key in dic: #only runs once
+                    date = datetime.strptime(key, "%m/%d/%Y %H:%M:%S")
+                    date = date.replace(hour=0, minute=0, second=0)
+                    
+                    if date in data_stock_dic:
+                        if int(data_stock_dic[date]) < int(dic[key]):
+                            data_stock_dic[date] = dic[key]
+                    else:
+                        data_stock_dic[date] = dic[key]
+    
+    for key in data_price_dic:
+        data_date.append(key)
+    for key in data_stock_dic:
+        if key not in data_date:
+            data_date.append(key)
+            
+    data_date.sort()
+    for key in data_date:
+        if key in data_price_dic:
+            data_price.append(data_price_dic[key])
+        else:
+            i = 1
+            while((key - timedelta(days=i)) not in data_price_dic and i < 30):
+                i += 1
+            if (key - timedelta(days=i)) in data_price_dic:
+                data_price.append(data_price_dic[key - timedelta(days=i)])
+            else:
+                data_price.append(0)
+            
+        if key in data_stock_dic:
+            data_stock.append(data_stock_dic[key])
+        else:
+            i = 1
+            while((key - timedelta(days=i)) not in data_stock_dic and i < 30):
+                i += 1
+            if key - timedelta(days=i) in data_stock_dic:
+                data_stock.append(data_stock_dic[key - timedelta(days=i)])
+            else:
+                data_stock.append(0)
+    
+    plt.style.use('seaborn')
+    fig = plt.figure(figsize=(6, 4), dpi=100)
+    ax1 = fig.add_subplot(111)
+    
+    line1, = ax1.plot_date(data_date, data_price, color='g', fmt='o-', label='Price')
+    ax1.set_xlabel('Date')
+    ax1.set_ylabel('Price')
+    
+    ax2 = ax1.twinx()
+    line2, = ax2.plot_date(data_date, data_stock, color='b', fmt='o-', label='Stock')
+    ax2.set_ylabel('Stock')
+    
+    plt.title('Price and Stock of ' + name)
+    
+    plt.gcf().autofmt_xdate()
+    date_format = mpl_dates.DateFormatter('%b, %d')
+    plt.gca().xaxis.set_major_formatter(date_format)
+    
+    plt.tight_layout()
+    plt.legend((line1, line2), ('Price', 'Stock'), loc='upper left')
+    plt.grid()
+    mpc.cursor(hover=True)
+    plt.close()
+    
+    main_frame = Toplevel(root)
+    graph_frame = Frame(main_frame)
+    chart = FigureCanvasTkAgg(fig, master=graph_frame)
+    chart.get_tk_widget().pack(side=TOP, fill=BOTH, expand=1)
+
+    toolbar = NavigationToolbar2Tk(chart, graph_frame)
+    toolbar.update()
+    chart._tkcanvas.pack(side=TOP, fill=BOTH, expand=1)
+    graph_frame.pack(side=TOP, fill=BOTH, expand=1)
+    Button(main_frame, text='Quit', font=("Arial", 10), command=main_frame.destroy).pack(side=TOP, fill=BOTH, expand=1)
+    return None

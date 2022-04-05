@@ -206,6 +206,9 @@
       },
       {
         "04/01/2022 17:11:24": 0
+      },
+      {
+        "04/03/2022 20:28:26": 0
       }
     ]
   },
@@ -265,6 +268,9 @@
       },
       {
         "04/02/2022 06:03:55": 0
+      },
+      {
+        "04/03/2022 20:28:26": 0
       }
     ]
   },
@@ -454,6 +460,9 @@
       },
       {
         "04/01/2022 14:07:42": 0
+      },
+      {
+        "04/03/2022 20:28:26": 0
       }
     ]
   },
@@ -622,6 +631,9 @@
       },
       {
         "04/03/2022 09:41:31": 0
+      },
+      {
+        "04/03/2022 20:28:26": 0
       }
     ]
   },
@@ -763,6 +775,9 @@
       },
       {
         "04/01/2022 14:07:42": 0
+      },
+      {
+        "04/03/2022 20:28:26": 0
       }
     ]
   },
@@ -894,6 +909,9 @@
       },
       {
         "04/01/2022 14:07:42": 0
+      },
+      {
+        "04/03/2022 20:28:26": 0
       }
     ]
   },
@@ -1101,7 +1119,7 @@
     "model": "3080",
     "brand": "ASUS",
     "price": 1299.99,
-    "stock": 5,
+    "stock": 4,
     "memorySize": "12GB",
     "SKU": "370106",
     "link": "https://www.microcenter.com/product/646373/asus-nvidia-geforce-rtx-3080-tuf-gaming-lhr-overclocked-triple-fan-12gb-gddr6x-pcie-40-graphics-card",
@@ -1152,6 +1170,9 @@
       },
       {
         "04/03/2022 12:40:45": 5
+      },
+      {
+        "04/03/2022 16:46:28": 4
       }
     ]
   },
@@ -1217,6 +1238,9 @@
       },
       {
         "04/03/2022 12:40:45": 17
+      },
+      {
+        "04/03/2022 20:28:26": 17
       }
     ]
   },
@@ -1572,6 +1596,9 @@
       },
       {
         "04/03/2022 07:47:23": 0
+      },
+      {
+        "04/03/2022 20:28:26": 0
       }
     ]
   },
@@ -1698,7 +1725,7 @@
     "model": "3080 Ti",
     "brand": "Zotac",
     "price": 1399.99,
-    "stock": 7,
+    "stock": 6,
     "memorySize": "12GB",
     "SKU": "370858",
     "link": "https://www.microcenter.com/product/646448/zotac-geforce-rtx-3080-ti-trinity-overclocked-triple-fan-12gb-gddr6x-pcie-40-graphics-card",
@@ -1722,6 +1749,9 @@
       },
       {
         "04/02/2022 11:31:50": 7
+      },
+      {
+        "04/03/2022 19:21:49": 6
       }
     ]
   },
@@ -1789,6 +1819,9 @@
       },
       {
         "04/02/2022 07:30:51": 0
+      },
+      {
+        "04/03/2022 20:28:26": 0
       }
     ]
   },
@@ -1996,6 +2029,9 @@
       },
       {
         "04/03/2022 15:11:29": 0
+      },
+      {
+        "04/03/2022 20:28:26": 0
       }
     ]
   },
@@ -2004,7 +2040,7 @@
     "model": "3080 Ti",
     "brand": "Zotac",
     "price": 1449.99,
-    "stock": 16,
+    "stock": 15,
     "memorySize": "12GB",
     "SKU": "286245",
     "link": "https://www.microcenter.com/product/638427/zotac-nvidia-geforce-rtx-3080-ti-amp-holo-triple-fan-12gb-gddr6x-pcie-40-graphics-card",
@@ -2025,6 +2061,9 @@
     "stock_records": [
       {
         "03/28/2022 23:30:02": 16
+      },
+      {
+        "04/03/2022 19:17:43": 15
       }
     ]
   },
@@ -2706,7 +2745,7 @@
     "stock": 0,
     "memorySize": "12GB",
     "SKU": "322289",
-    "link": "https://www.microcenter.com/product/641819/msi-nvidia-geforce-rtx-3060-gaming-z-trio-overclocked-triple-fan-12gb-gddr6-pcie-40-graphics-card",
+    "link": "https://www.microcenter.com/product/641819/msi-nvidia-geforce-rtx-3060-gaming-z-trio-overclocked-triple-fan-12gb-gddr6-pcie-40-graphics-card?ob=1",
     "price_records": [
       {
         "03/28/2022 23:30:02": 579.99

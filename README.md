@@ -22,5 +22,5 @@ python3 main.py
 - [x] send email with price drop
 - [x] interface
     - [x] setting
-    - [ ] history graph
+    - [x] history graph
     - [ ] every graphic card history
