@@ -1,12 +1,9 @@
-from curses import wrapper
 from tkinter import *
 from tkinter import messagebox
 from datetime import datetime
 from datetime import timedelta
 from Util import GPU_GOAL_PRICE, DEFAULT_RECORD_NAME
-import curses
 import sys
-import time
 import json
 import webbrowser
 
@@ -109,7 +106,7 @@ def setting_windows(root):
     rows = 0
     setting_win = Toplevel(root)
     setting_win.title('Setting')
-    setting_win.geometry('250x410')
+    # setting_win.geometry('250x410')
     
     time_title = Label(setting_win, text='Time interval(min 10):')
     time_input = Entry(setting_win, width=10)
@@ -195,9 +192,9 @@ def setting_windows(root):
             print(e)
 
     set_btn = Button(setting_win, text='Set', height=1, width=10, command=lambda: [set_input(), setting_win.destroy()])
-    set_btn.grid(row=rows, column=0, padx=5, pady=5)
+    set_btn.grid(row=rows, column=0, padx=10, pady=10)
     Close_btn = Button(setting_win, text='Close', height=1, width=10, command=lambda: setting_win.destroy())
-    Close_btn.grid(row=rows, column=1, padx=5, pady=5)
+    Close_btn.grid(row=rows, column=1, padx=10, pady=10)
 
 def frame_log(log_frame, log_text):
     clear_frame(log_frame)
