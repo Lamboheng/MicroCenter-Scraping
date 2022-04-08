@@ -83,18 +83,18 @@ def screen_tk(products: GPU_.GPU):
                 Util.update_json(products)
                 Util.clear_json_file()
                 
-                #send email, return True is the email is sent, and list of sent products
-                temp, result_products = Util.send_email_at_goal(products, GPU_GOAL_PRICE)
-                if temp: 
-                    for result in result_products:
-                        messagebox.showwarning("Price Alert!", f"{result.get_brand()} {result.get_model()} {result.get_price()}")
-                    last_sent = datetime.now().strftime("%m/%d %H:%M")
-                
                 #update price and stock frame
                 clear_frame(current_price_frame)
                 clear_frame(current_stock_frame)
                 frame_price(current_price_frame, products)
                 frame_stock(current_stock_frame, products)
+                
+            #send email, return True is the email is sent, and list of sent products
+            temp, result_products = Util.send_email_at_goal(products)
+            if temp: 
+                for result in result_products:
+                    messagebox.showwarning("Price Alert!", f"{result.get_brand()} {result.get_model()} {result.get_price()}")
+                last_sent = datetime.now().strftime("%m/%d %H:%M")
         count_time -= 1
         status_frame.after(1000, lambda: update_main_frame(count_time, last_sent, log_text))
             

@@ -24,7 +24,7 @@
     "model": "3070 Ti",
     "brand": "ASUS",
     "price": 699.99,
-    "stock": 0,
+    "stock": 21,
     "memorySize": "8GB",
     "SKU": "283176",
     "link": "https://www.microcenter.com/product/638234/asus-nvidia-geforce-rtx-3070-ti-tuf-gaming-overclocked-triple-fan-8gb-gddr6x-pcie-40-graphics-card",
@@ -36,6 +36,9 @@
     "stock_records": [
       {
         "03/28/2022 23:30:02": 0
+      },
+      {
+        "04/08/2022 06:27:31": 21
       }
     ]
   },
@@ -47,7 +50,7 @@
     "stock": 0,
     "memorySize": "8GB",
     "SKU": "287342",
-    "link": "https://www.microcenter.com/product/638611/evga-nvidia-geforce-rtx-3070-ti-ftw3-ultra-gaming-triple-fan-8gb-gddr6x-pcie-40-graphics-card",
+    "link": "https://www.microcenter.com/product/638611/evga-nvidia-geforce-rtx-3070-ti-ftw3-ultra-gaming-triple-fan-8gb-gddr6x-pcie-40-graphics-card?ob=1",
     "price_records": [
       {
         "03/28/2022 23:30:02": 829.99
@@ -62,6 +65,51 @@
       },
       {
         "03/29/2022 13:17:03": 0
+      },
+      {
+        "04/05/2022 14:44:40": 22
+      },
+      {
+        "04/05/2022 15:49:56": 21
+      },
+      {
+        "04/06/2022 07:54:45": 12
+      },
+      {
+        "04/06/2022 09:09:30": 11
+      },
+      {
+        "04/06/2022 09:50:19": 10
+      },
+      {
+        "04/06/2022 10:36:15": 8
+      },
+      {
+        "04/06/2022 11:08:57": 7
+      },
+      {
+        "04/06/2022 11:19:09": 6
+      },
+      {
+        "04/06/2022 11:33:27": 5
+      },
+      {
+        "04/06/2022 11:41:37": 5
+      },
+      {
+        "04/06/2022 12:20:27": 4
+      },
+      {
+        "04/06/2022 12:50:04": 3
+      },
+      {
+        "04/06/2022 13:08:26": 2
+      },
+      {
+        "04/06/2022 14:17:51": 1
+      },
+      {
+        "04/06/2022 15:34:20": 0
       }
     ]
   },
@@ -102,7 +150,7 @@
     "model": "3080 Ti",
     "brand": "Gigabyte",
     "price": 1549.99,
-    "stock": 12,
+    "stock": 11,
     "memorySize": "12GB",
     "SKU": "284331",
     "link": "https://www.microcenter.com/product/638405/gigabyte-nvidia-geforce-rtx-3080-ti-gaming-overclocked-triple-fan-12gb-gddr6-pcie-40-graphics-card",
@@ -144,6 +192,15 @@
       },
       {
         "04/03/2022 03:18:53": 12
+      },
+      {
+        "04/06/2022 19:31:19": 11
+      },
+      {
+        "04/07/2022 18:20:35": 10
+      },
+      {
+        "04/08/2022 06:21:42": 11
       }
     ]
   },
@@ -279,7 +336,7 @@
     "model": "3080",
     "brand": "EVGA",
     "price": 1299.99,
-    "stock": 0,
+    "stock": 25,
     "memorySize": "12GB",
     "SKU": "370544",
     "link": "https://www.microcenter.com/product/646451/evga-geforce-rtx-3080-ftw3-ultra-gaming-triple-fan-12gb-gddr6x-pcie-40-graphics-card",
@@ -327,6 +384,30 @@
       },
       {
         "04/02/2022 03:20:44": 0
+      },
+      {
+        "04/05/2022 14:44:40": 17
+      },
+      {
+        "04/06/2022 15:46:35": 16
+      },
+      {
+        "04/06/2022 19:49:43": 17
+      },
+      {
+        "04/07/2022 11:47:54": 16
+      },
+      {
+        "04/07/2022 13:11:30": 15
+      },
+      {
+        "04/07/2022 21:33:44": 14
+      },
+      {
+        "04/07/2022 22:00:17": 13
+      },
+      {
+        "04/08/2022 06:21:42": 25
       }
     ]
   },
@@ -335,7 +416,7 @@
     "model": "3090",
     "brand": "EVGA",
     "price": 1919.99,
-    "stock": 0,
+    "stock": 25,
     "memorySize": "24GB",
     "SKU": "177923",
     "link": "https://www.microcenter.com/product/628738/evga-nvidia-geforce-rtx-3090-ftw3-ultra-triple-fan-24gb-gddr6x-pcie-40-graphics-card",
@@ -353,6 +434,9 @@
       },
       {
         "04/02/2022 08:07:35": 0
+      },
+      {
+        "04/08/2022 06:21:42": 25
       }
     ]
   },
@@ -634,6 +718,15 @@
       },
       {
         "04/03/2022 20:28:26": 0
+      },
+      {
+        "04/06/2022 22:24:12": 2
+      },
+      {
+        "04/07/2022 07:44:58": 1
+      },
+      {
+        "04/07/2022 09:24:05": 0
       }
     ]
   },
@@ -835,7 +928,7 @@
     "model": "3050",
     "brand": "ASUS",
     "price": 379.99,
-    "stock": 0,
+    "stock": 25,
     "memorySize": "8GB",
     "SKU": "373498",
     "link": "https://www.microcenter.com/product/646748/asus-nvidia-geforce-rtx-3050-dual-overclocked-dual-fan-8gb-gddr6-pcie-40-graphics-card",
@@ -868,6 +961,9 @@
       },
       {
         "03/30/2022 22:23:57": 0
+      },
+      {
+        "04/05/2022 14:44:40": 25
       }
     ]
   },
@@ -912,6 +1008,21 @@
       },
       {
         "04/03/2022 20:28:26": 0
+      },
+      {
+        "04/05/2022 14:44:40": 21
+      },
+      {
+        "04/05/2022 15:05:04": 19
+      },
+      {
+        "04/05/2022 15:53:00": 18
+      },
+      {
+        "04/06/2022 07:54:45": 1
+      },
+      {
+        "04/06/2022 08:39:53": 0
       }
     ]
   },
@@ -920,7 +1031,7 @@
     "model": "3050",
     "brand": "MSI",
     "price": 389.99,
-    "stock": 1,
+    "stock": 0,
     "memorySize": "8GB",
     "SKU": "371724",
     "link": "https://www.microcenter.com/product/646628/msi-nvidia-geforce-rtx-3050-ventus-2x-overclocked-dual-fan-8gb-gddr6-pcie-40-graphics-card",
@@ -1010,6 +1121,9 @@
       },
       {
         "04/03/2022 12:28:32": 1
+      },
+      {
+        "04/07/2022 06:01:51": 0
       }
     ]
   },
@@ -1018,7 +1132,7 @@
     "model": "3060 Ti",
     "brand": "Gigabyte",
     "price": 699.99,
-    "stock": 0,
+    "stock": 1,
     "memorySize": "8GB",
     "SKU": "309435",
     "link": "https://www.microcenter.com/product/640396/gigabyte-nvidia-geforce-rtx-3060-ti-aorus-elite-lhr-overclocked-triple-fan-8gb-gddr6-pcie-40-graphics-card",
@@ -1039,6 +1153,9 @@
       },
       {
         "03/30/2022 22:23:57": 0
+      },
+      {
+        "04/08/2022 06:21:42": 1
       }
     ]
   },
@@ -1119,7 +1236,7 @@
     "model": "3080",
     "brand": "ASUS",
     "price": 1299.99,
-    "stock": 4,
+    "stock": 0,
     "memorySize": "12GB",
     "SKU": "370106",
     "link": "https://www.microcenter.com/product/646373/asus-nvidia-geforce-rtx-3080-tuf-gaming-lhr-overclocked-triple-fan-12gb-gddr6x-pcie-40-graphics-card",
@@ -1173,6 +1290,18 @@
       },
       {
         "04/03/2022 16:46:28": 4
+      },
+      {
+        "04/05/2022 14:44:40": 3
+      },
+      {
+        "04/06/2022 07:54:45": 2
+      },
+      {
+        "04/06/2022 12:10:12": 1
+      },
+      {
+        "04/07/2022 06:58:58": 0
       }
     ]
   },
@@ -1181,7 +1310,7 @@
     "model": "3080",
     "brand": "ASUS",
     "price": 1399.99,
-    "stock": 17,
+    "stock": 12,
     "memorySize": "12GB",
     "SKU": "370114",
     "link": "https://www.microcenter.com/product/646372/asus-nvidia-geforce-rtx-3080-rog-strix-gaming-overclocked-triple-fan-12gb-gddr6x-pcie-40-graphics-card",
@@ -1241,6 +1370,18 @@
       },
       {
         "04/03/2022 20:28:26": 17
+      },
+      {
+        "04/05/2022 14:44:40": 15
+      },
+      {
+        "04/05/2022 15:30:34": 14
+      },
+      {
+        "04/07/2022 04:58:36": 13
+      },
+      {
+        "04/07/2022 12:46:00": 12
       }
     ]
   },
@@ -1330,7 +1471,7 @@
     "model": "3050",
     "brand": "Gigabyte",
     "price": 379.99,
-    "stock": 0,
+    "stock": 8,
     "memorySize": "8GB",
     "SKU": "373142",
     "link": "https://www.microcenter.com/product/646694/gigabyte-nvidia-geforce-rtx-3050-gaming-overclocked-triple-fan-8gb-gddr6-pcie-40-graphics-card",
@@ -1345,6 +1486,9 @@
       },
       {
         "03/29/2022 13:17:03": 0
+      },
+      {
+        "04/08/2022 06:21:42": 8
       }
     ]
   },
@@ -1353,7 +1497,7 @@
     "model": "3070 Ti",
     "brand": "Gigabyte",
     "price": 849.99,
-    "stock": 0,
+    "stock": 8,
     "memorySize": "8GB",
     "SKU": "287243",
     "link": "https://www.microcenter.com/product/638605/gigabyte-nvidia-geforce-rtx-3070-ti-gaming-overclocked-triple-fan-8gb-gddr6x-pcie-40-graphics-card",
@@ -1410,6 +1554,9 @@
       },
       {
         "04/03/2022 03:18:53": 0
+      },
+      {
+        "04/08/2022 06:21:42": 8
       }
     ]
   },
@@ -1418,7 +1565,7 @@
     "model": "3050",
     "brand": "ASUS",
     "price": 429.99,
-    "stock": 0,
+    "stock": 4,
     "memorySize": "8GB",
     "SKU": "373480",
     "link": "https://www.microcenter.com/product/646719/asus-nvidia-geforce-rtx-3050-rog-strix-overclocked-triple-fan-8gb-gddr6-pcie-40-graphics-card",
@@ -1442,6 +1589,21 @@
       },
       {
         "04/01/2022 14:07:42": 0
+      },
+      {
+        "04/05/2022 14:44:40": 6
+      },
+      {
+        "04/07/2022 03:17:41": 6
+      },
+      {
+        "04/07/2022 03:23:48": 6
+      },
+      {
+        "04/07/2022 09:29:10": 5
+      },
+      {
+        "04/07/2022 11:00:58": 4
       }
     ]
   },
@@ -1545,10 +1707,10 @@
     "model": "3080 Ti",
     "brand": "ASUS",
     "price": 1649.99,
-    "stock": 0,
+    "stock": 8,
     "memorySize": "12GB",
     "SKU": "279869",
-    "link": "https://www.microcenter.com/product/637877/asus-nvidia-geforce-rtx-3080-ti-rog-strix-overclocked-triple-fan-12gb-gddr6x-pcie-40-graphics-card?ob=1",
+    "link": "https://www.microcenter.com/product/637877/asus-nvidia-geforce-rtx-3080-ti-rog-strix-overclocked-triple-fan-12gb-gddr6x-pcie-40-graphics-card",
     "price_records": [
       {
         "03/28/2022 23:30:02": 1799.99
@@ -1599,6 +1761,45 @@
       },
       {
         "04/03/2022 20:28:26": 0
+      },
+      {
+        "04/05/2022 14:44:40": 15
+      },
+      {
+        "04/05/2022 15:05:04": 14
+      },
+      {
+        "04/06/2022 07:54:45": 15
+      },
+      {
+        "04/06/2022 11:51:49": 14
+      },
+      {
+        "04/06/2022 13:43:09": 13
+      },
+      {
+        "04/06/2022 13:52:20": 13
+      },
+      {
+        "04/06/2022 16:09:01": 12
+      },
+      {
+        "04/06/2022 16:27:25": 11
+      },
+      {
+        "04/06/2022 16:33:33": 10
+      },
+      {
+        "04/07/2022 16:19:11": 9
+      },
+      {
+        "04/07/2022 16:47:45": 8
+      },
+      {
+        "04/07/2022 17:37:44": 7
+      },
+      {
+        "04/08/2022 06:21:42": 8
       }
     ]
   },
@@ -1607,7 +1808,7 @@
     "model": "3070 Ti",
     "brand": "Gigabyte",
     "price": 899.99,
-    "stock": 0,
+    "stock": 4,
     "memorySize": "8GB",
     "SKU": "287250",
     "link": "https://www.microcenter.com/product/638606/gigabyte-nvidia-geforce-rtx-3070-ti-aorus-master-overclocked-triple-fan-8gb-gddr6x-pcie-40-graphics-card",
@@ -1619,6 +1820,9 @@
     "stock_records": [
       {
         "03/28/2022 23:30:02": 0
+      },
+      {
+        "04/08/2022 06:21:42": 4
       }
     ]
   },
@@ -1696,7 +1900,7 @@
     "model": "3070 Ti",
     "brand": "ASUS",
     "price": 899.99,
-    "stock": 0,
+    "stock": 9,
     "memorySize": "8GB",
     "SKU": "283184",
     "link": "https://www.microcenter.com/product/638233/asus-nvidia-geforce-rtx-3070-ti-rog-strix-overclocked-triple-fan-8gb-gddr6x-pcie-40-graphics-card",
@@ -1717,6 +1921,9 @@
     "stock_records": [
       {
         "03/28/2022 23:30:02": 0
+      },
+      {
+        "04/08/2022 06:21:42": 9
       }
     ]
   },
@@ -1725,7 +1932,7 @@
     "model": "3080 Ti",
     "brand": "Zotac",
     "price": 1399.99,
-    "stock": 6,
+    "stock": 3,
     "memorySize": "12GB",
     "SKU": "370858",
     "link": "https://www.microcenter.com/product/646448/zotac-geforce-rtx-3080-ti-trinity-overclocked-triple-fan-12gb-gddr6x-pcie-40-graphics-card",
@@ -1752,6 +1959,15 @@
       },
       {
         "04/03/2022 19:21:49": 6
+      },
+      {
+        "04/06/2022 20:25:45": 5
+      },
+      {
+        "04/06/2022 21:20:54": 4
+      },
+      {
+        "04/07/2022 13:40:04": 3
       }
     ]
   },
@@ -2032,6 +2248,12 @@
       },
       {
         "04/03/2022 20:28:26": 0
+      },
+      {
+        "04/06/2022 07:54:45": 1
+      },
+      {
+        "04/06/2022 19:24:10": 0
       }
     ]
   },
@@ -2040,7 +2262,7 @@
     "model": "3080 Ti",
     "brand": "Zotac",
     "price": 1449.99,
-    "stock": 15,
+    "stock": 14,
     "memorySize": "12GB",
     "SKU": "286245",
     "link": "https://www.microcenter.com/product/638427/zotac-nvidia-geforce-rtx-3080-ti-amp-holo-triple-fan-12gb-gddr6x-pcie-40-graphics-card",
@@ -2064,6 +2286,9 @@
       },
       {
         "04/03/2022 19:17:43": 15
+      },
+      {
+        "04/07/2022 13:19:40": 14
       }
     ]
   },
@@ -2095,7 +2320,7 @@
     "stock": 0,
     "memorySize": "8GB",
     "SKU": "303883",
-    "link": "https://www.microcenter.com/product/639906/msi-nvidia-geforce-rtx-3060-ti-gaming-x-lhr-dual-fan-8gb-gddr6-pcie-40-graphics-card",
+    "link": "https://www.microcenter.com/product/639906/msi-nvidia-geforce-rtx-3060-ti-gaming-x-lhr-dual-fan-8gb-gddr6-pcie-40-graphics-card?ob=1",
     "price_records": [
       {
         "03/28/2022 23:30:02": 589.99
@@ -2112,7 +2337,7 @@
     "model": "3060",
     "brand": "Gigabyte",
     "price": 519.99,
-    "stock": 0,
+    "stock": 1,
     "memorySize": "12GB",
     "SKU": "287722",
     "link": "https://www.microcenter.com/product/638652/gigabyte-nvidia-geforce-rtx-3060-aorus-elite-rev-2-overclocked-triple-fan-12gb-gddr6-pcie-40-graphics-card",
@@ -2124,6 +2349,9 @@
     "stock_records": [
       {
         "03/28/2022 23:30:02": 0
+      },
+      {
+        "04/08/2022 06:21:42": 1
       }
     ]
   },
@@ -2152,7 +2380,7 @@
     "model": "3060",
     "brand": "Gigabyte",
     "price": 479.99,
-    "stock": 0,
+    "stock": 5,
     "memorySize": "12GB",
     "SKU": "287714",
     "link": "https://www.microcenter.com/product/638651/gigabyte-nvidia-geforce-rtx-3060-gaming-rev-2-overclocked-triple-fan-12gb-gddr6-pcie-40-graphics-card",
@@ -2164,6 +2392,9 @@
     "stock_records": [
       {
         "03/28/2022 23:30:02": 0
+      },
+      {
+        "04/08/2022 06:21:42": 5
       }
     ]
   },
@@ -2431,7 +2662,7 @@
     "stock": 0,
     "memorySize": "8GB",
     "SKU": "303826",
-    "link": "https://www.microcenter.com/product/639900/gigabyte-nvidia-geforce-rtx-3070-aorus-master-lhr-overclocked-triple-fan-8gb-gddr6-pcie-40-graphics-card",
+    "link": "https://www.microcenter.com/product/639900/gigabyte-nvidia-geforce-rtx-3070-aorus-master-lhr-overclocked-triple-fan-8gb-gddr6-pcie-40-graphics-card?ob=1",
     "price_records": [
       {
         "03/28/2022 23:30:02": 859.99
@@ -2477,7 +2708,7 @@
     "model": "3080",
     "brand": "Zotac",
     "price": 1299.99,
-    "stock": 9,
+    "stock": 7,
     "memorySize": "12GB",
     "SKU": "370833",
     "link": "https://www.microcenter.com/product/646447/zotac-geforce-rtx-3080-trinity-lhr-overclocked-triple-fan-12gb-gddr6x-pcie-40-graphics-card",
@@ -2501,6 +2732,12 @@
       },
       {
         "04/02/2022 15:12:40": 9
+      },
+      {
+        "04/07/2022 17:26:31": 8
+      },
+      {
+        "04/07/2022 17:59:09": 7
       }
     ]
   },
@@ -2636,7 +2873,7 @@
     "stock": 0,
     "memorySize": "24GB",
     "SKU": "173120",
-    "link": "https://www.microcenter.com/product/628321/asus-nvidia-geforce-rtx-3090-tuf-gaming-overclocked-triple-fan-24gb-gddr6x-pcie-40-graphics-card",
+    "link": "https://www.microcenter.com/product/628321/asus-nvidia-geforce-rtx-3090-tuf-gaming-overclocked-triple-fan-24gb-gddr6x-pcie-40-graphics-card?ob=1",
     "price_records": [
       {
         "03/28/2022 23:30:02": 2129.99
@@ -2745,7 +2982,7 @@
     "stock": 0,
     "memorySize": "12GB",
     "SKU": "322289",
-    "link": "https://www.microcenter.com/product/641819/msi-nvidia-geforce-rtx-3060-gaming-z-trio-overclocked-triple-fan-12gb-gddr6-pcie-40-graphics-card?ob=1",
+    "link": "https://www.microcenter.com/product/641819/msi-nvidia-geforce-rtx-3060-gaming-z-trio-overclocked-triple-fan-12gb-gddr6-pcie-40-graphics-card",
     "price_records": [
       {
         "03/28/2022 23:30:02": 579.99
@@ -2932,6 +3169,12 @@
     "stock_records": [
       {
         "03/30/2022 22:23:57": 0
+      },
+      {
+        "04/05/2022 14:44:40": 3
+      },
+      {
+        "04/06/2022 07:54:45": 0
       }
     ]
   },
@@ -2940,7 +3183,7 @@
     "model": "3080",
     "brand": "EVGA",
     "price": 1399.99,
-    "stock": 0,
+    "stock": 1,
     "memorySize": "12GB",
     "SKU": "387993",
     "link": "https://www.microcenter.com/product/647958/evga-nvidia-geforce-rtx-3080-ultra-hydro-copper-gaming-overclocked-liquid-cooled-12gb-gddr6x-pcie-40-graphics-card",
@@ -2952,6 +3195,18 @@
     "stock_records": [
       {
         "03/30/2022 22:23:57": 0
+      },
+      {
+        "04/05/2022 14:44:40": 4
+      },
+      {
+        "04/06/2022 07:54:45": 3
+      },
+      {
+        "04/07/2022 13:40:04": 2
+      },
+      {
+        "04/07/2022 14:19:50": 1
       }
     ]
   },
@@ -3112,6 +3367,66 @@
     "stock_records": [
       {
         "04/02/2022 03:34:00": 0
+      }
+    ]
+  },
+  "392738": {
+    "title": "EVGA NVIDIA GeForce RTX 3070 Ti XC3 ULTRA Gaming Triple Fan 8GB GDDR6X PCIe 4.0 Graphics Card",
+    "model": "3070 Ti",
+    "brand": "EVGA",
+    "price": 719.99,
+    "stock": 0,
+    "memorySize": "8GB",
+    "SKU": "392738",
+    "link": "https://www.microcenter.com/product/648651/evga-nvidia-geforce-rtx-3070-ti-xc3-ultra-gaming-triple-fan-8gb-gddr6x-pcie-40-graphics-card",
+    "price_records": [
+      {
+        "04/07/2022 03:14:37": 719.99
+      }
+    ],
+    "stock_records": [
+      {
+        "04/07/2022 03:14:37": 0
+      }
+    ]
+  },
+  "376699": {
+    "title": "Gigabyte NVIDIA GeForce RTX 3070 Ti Eagle Overclocked Triple Fan 8GB GDDR6X PCIe 4.0 Graphics Card",
+    "model": "3070 Ti",
+    "brand": "Gigabyte",
+    "price": 899.99,
+    "stock": 0,
+    "memorySize": "8GB",
+    "SKU": "376699",
+    "link": "https://www.microcenter.com/product/647134/gigabyte-nvidia-geforce-rtx-3070-ti-eagle-overclocked-triple-fan-8gb-gddr6x-pcie-40-graphics-card",
+    "price_records": [
+      {
+        "04/07/2022 03:14:37": 899.99
+      }
+    ],
+    "stock_records": [
+      {
+        "04/07/2022 03:14:37": 0
+      }
+    ]
+  },
+  "389221": {
+    "title": "ASUS NVIDIA GeForce RTX 3090 Ti TUF Gaming Overclocked Triple Fan 24GB GDDR6X PCIe 4.0 Graphics Card",
+    "model": "3090 Ti",
+    "brand": "ASUS",
+    "price": 2149.99,
+    "stock": 0,
+    "memorySize": "24GB",
+    "SKU": "389221",
+    "link": "https://www.microcenter.com/product/648270/asus-nvidia-geforce-rtx-3090-ti-tuf-gaming-overclocked-triple-fan-24gb-gddr6x-pcie-40-graphics-card",
+    "price_records": [
+      {
+        "04/08/2022 06:21:42": 2149.99
+      }
+    ],
+    "stock_records": [
+      {
+        "04/08/2022 06:21:42": 0
       }
     ]
   }

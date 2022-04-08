@@ -87,3 +87,19 @@ def send_email(product: GPU):
     if message['labelIds'][0] == 'SENT':
         return True
     return False
+
+def check_gmail_server():
+    if not os.path.exists("client.json"):
+        print("Please provide client.json")
+        return False
+    if not os.path.exists("email.txt"):
+        print("Please provide email.txt")
+        return False
+    with open("email.txt", "r") as f:
+        file = f.readlines()
+        email_ = file[0].strip()
+    CLIENT_FILE = 'client.json'
+    API_NAME = 'gmail'
+    API_VERSION = 'v1'
+    SCOPES = ['https://mail.google.com/']
+    Create_Service(CLIENT_FILE, API_NAME, API_VERSION, SCOPES)

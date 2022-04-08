@@ -189,7 +189,7 @@ def products_str(products: GPU_.GPU):
         string += "\x1b[91m" + (str(products_highest_price[GPU_.GPU_MODELS[i]])).rjust(8) + " \x1b[34m<- " "\x1b[93m" + (GPU_.GPU_MODELS[i]).ljust(8) + "\x1b[34m-> \x1b[92m" + str(products_lowest_price[GPU_.GPU_MODELS[i]]) + "\n"
     return string
 
-def send_email_at_goal(products: GPU_.GPU, price_goal):
+def send_email_at_goal(products: GPU_.GPU):
     lowest = sys.float_info.max
     found = False
     lowest_product = products[0]
@@ -198,10 +198,10 @@ def send_email_at_goal(products: GPU_.GPU, price_goal):
     for i in range(len(GPU_.GPU_MODELS)):
         for product in products:
             if product.get_model() == GPU_.GPU_MODELS[i] and product.get_stock() > 0 and product.get_price() < lowest:
-                found == True
+                found = True
                 lowest = product.get_price()
                 lowest_product = product
-        if found and lowest < price_goal[i]:
+        if found and lowest < GPU_GOAL_PRICE[GPU_.GPU_MODELS[i]]:
             sent = True
             result_product.append(lowest_product)
             Email_.send_email(lowest_product)

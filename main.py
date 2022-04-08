@@ -1,7 +1,9 @@
 import Util
 from GUI_ import screen_tk
+from Email_ import check_gmail_server
 
 def main():
+    check_gmail_server()
     products = []
     
     Util.setup_products(products)
