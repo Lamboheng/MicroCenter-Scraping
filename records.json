@@ -24,7 +24,7 @@
     "model": "3070 Ti",
     "brand": "ASUS",
     "price": 699.99,
-    "stock": 21,
+    "stock": 19,
     "memorySize": "8GB",
     "SKU": "283176",
     "link": "https://www.microcenter.com/product/638234/asus-nvidia-geforce-rtx-3070-ti-tuf-gaming-overclocked-triple-fan-8gb-gddr6x-pcie-40-graphics-card",
@@ -39,6 +39,9 @@
       },
       {
         "04/08/2022 06:27:31": 21
+      },
+      {
+        "04/08/2022 06:39:10": 19
       }
     ]
   },

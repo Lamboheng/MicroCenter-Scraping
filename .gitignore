@@ -4,9 +4,12 @@ package-lock.json
 /__pycache__
 /token files
 /GeForce RTX 3000 Series _ Micro Center_files
+/build
+/dist
 
 *.html
 
 credentials.txt
 email.txt
 client.json
+main.spec

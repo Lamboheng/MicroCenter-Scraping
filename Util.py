@@ -140,20 +140,22 @@ def json_match_products(datas, products: GPU_.GPU):
             }
         
 def json_update_price(product: GPU_.GPU):
-    with open(DEFAULT_RECORD_NAME, "r") as f:
-        datas = json.load(f)
-    datas[product.get_SKU()]["price"] = product.get_price()
-    datas[product.get_SKU()]["price_records"].append({datetime.now().strftime("%m/%d/%Y %H:%M:%S"): product.get_price()})
-    with open(DEFAULT_RECORD_NAME, "w") as f:
-        json.dump(datas, f, indent=2)
+    if os.path.exists(DEFAULT_RECORD_NAME):
+        with open(DEFAULT_RECORD_NAME, "r") as f:
+            datas = json.load(f)
+        datas[product.get_SKU()]["price"] = product.get_price()
+        datas[product.get_SKU()]["price_records"].append({datetime.now().strftime("%m/%d/%Y %H:%M:%S"): product.get_price()})
+        with open(DEFAULT_RECORD_NAME, "w") as f:
+            json.dump(datas, f, indent=2)
     
 def json_update_stock(product: GPU_.GPU):
-    with open(DEFAULT_RECORD_NAME, "r") as f:
-        datas = json.load(f)
-    datas[product.get_SKU()]["stock"] = product.get_stock()
-    datas[product.get_SKU()]["stock_records"].append({datetime.now().strftime("%m/%d/%Y %H:%M:%S"): product.get_stock()})
-    with open(DEFAULT_RECORD_NAME, "w") as f:
-        json.dump(datas, f, indent=2)
+    if os.path.exists(DEFAULT_RECORD_NAME):
+        with open(DEFAULT_RECORD_NAME, "r") as f:
+            datas = json.load(f)
+        datas[product.get_SKU()]["stock"] = product.get_stock()
+        datas[product.get_SKU()]["stock_records"].append({datetime.now().strftime("%m/%d/%Y %H:%M:%S"): product.get_stock()})
+        with open(DEFAULT_RECORD_NAME, "w") as f:
+            json.dump(datas, f, indent=2)
 
 def products_str(products: GPU_.GPU):
     products_lowest_price = {
@@ -225,22 +227,23 @@ def find_lowest_highest(products: GPU_.GPU):
     return lowest_price, highest_price
 
 def clear_json_file():
-    with open(DEFAULT_RECORD_NAME, "r") as f:
-        datas = json.load(f)
-        
-    before_date = "01/01/1990 00:00:00"
-    for data in datas:
+    if os.path.exists(DEFAULT_RECORD_NAME):
+        with open(DEFAULT_RECORD_NAME, "r") as f:
+            datas = json.load(f)
+            
         before_date = "01/01/1990 00:00:00"
-        i = 0
-        while i < len(datas[data]['stock_records']):
-            for date_str in datas[data]['stock_records'][i]:
-                date = datetime.strptime(date_str, "%m/%d/%Y %H:%M:%S")
-            if date < datetime.strptime(before_date, "%m/%d/%Y %H:%M:%S") + timedelta(minutes=5):
-                datas[data]['stock_records'].pop(i-1)
-                before_date = date_str
-            else:
-                before_date = date_str
-                i += 1
+        for data in datas:
+            before_date = "01/01/1990 00:00:00"
+            i = 0
+            while i < len(datas[data]['stock_records']):
+                for date_str in datas[data]['stock_records'][i]:
+                    date = datetime.strptime(date_str, "%m/%d/%Y %H:%M:%S")
+                if date < datetime.strptime(before_date, "%m/%d/%Y %H:%M:%S") + timedelta(minutes=5):
+                    datas[data]['stock_records'].pop(i-1)
+                    before_date = date_str
+                else:
+                    before_date = date_str
+                    i += 1
 
-    with open(DEFAULT_RECORD_NAME, 'w') as f:
-        json.dump(datas, f, indent=2)
+        with open(DEFAULT_RECORD_NAME, 'w') as f:
+            json.dump(datas, f, indent=2)

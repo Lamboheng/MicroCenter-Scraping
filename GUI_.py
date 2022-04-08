@@ -2,8 +2,11 @@ from tkinter import *
 from tkinter import messagebox
 from datetime import datetime
 from datetime import timedelta
+
+from pip import main
 from Util import GPU_GOAL_PRICE, DEFAULT_RECORD_NAME
 import sys
+import os.path
 import json
 import webbrowser
 
@@ -28,7 +31,8 @@ count_time = DEFAULT_TIME_OUT
 def screen_tk(products: GPU_.GPU):
     root = Tk()
     # root.geometry('500x200')
-    root.title('GPU Price')
+    root.title('NW2')
+    root.iconbitmap('gpu_card_icon.ico')
     main_frame = Frame(root)
     
     last_sent = '00/00 00:00'
@@ -105,6 +109,7 @@ def screen_tk(products: GPU_.GPU):
 def setting_windows(root):
     rows = 0
     setting_win = Toplevel(root)
+    setting_win.iconbitmap('gpu_card_icon.ico')
     setting_win.title('Setting')
     # setting_win.geometry('250x410')
     
@@ -280,7 +285,8 @@ def plotGraphFromFile(root, selecter: str, name: str):
     data_date = []
     data_price = []
     data_stock = []
-    
+    if not os.path.exists(DEFAULT_RECORD_NAME):
+        return
     with open(DEFAULT_RECORD_NAME, "r") as f:
         datas = json.load(f)
     for data in datas:
@@ -360,6 +366,8 @@ def plotGraphFromFile(root, selecter: str, name: str):
     plt.close()
     
     main_frame = Toplevel(root)
+    main_frame.iconbitmap('gpu_card_icon.ico')
+    main_frame.title(f'{name} Graph')
     graph_frame = Frame(main_frame)
     chart = FigureCanvasTkAgg(fig, master=graph_frame)
     chart.get_tk_widget().pack(side=TOP, fill=BOTH, expand=1)
