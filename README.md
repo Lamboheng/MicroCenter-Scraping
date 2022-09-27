@@ -23,4 +23,3 @@ python3 main.py
 - [x] interface
     - [x] setting
     - [x] history graph
-    - [ ] every graphic card history
